@@ -5,6 +5,7 @@ using OnoStore.Identity.API.Models.UserViewModels;
 
 namespace OnoStore.Identity.API.Controllers
 {
+    [ApiController]
     [Route("api/identity")]
     public class AutoController: Controller
     {
@@ -66,7 +67,6 @@ namespace OnoStore.Identity.API.Controllers
             //    AdicionarErroProcessamento("Usuário temporariamente bloqueado por tentativas inválidas");
             //    return CustomResponse();
             //}
-
             //AdicionarErroProcessamento("Usuário ou Senha incorretos");
             //return CustomResponse();
 

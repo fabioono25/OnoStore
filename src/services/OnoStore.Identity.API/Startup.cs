@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -33,7 +34,14 @@ namespace OnoStore.Identity.API
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OnoStore.Identity.API", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "OnoStore.Identity.API",
+                    Description = "API for Identity.",
+                    Contact = new OpenApiContact() { Name = "Fabio", Email = "fabioono25@gmail.com" },
+                    License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT")},
+                    Version = "v1"
+                });
             });
         }
 
