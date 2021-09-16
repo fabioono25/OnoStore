@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using NSE.Identidade.API.Extensions;
 using OnoStore.Identity.API.Data;
 using OnoStore.Identity.API.Extensions;
 
@@ -32,6 +33,7 @@ namespace OnoStore.Identity.API
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
+                .AddErrorDescriber<IdentityMessagesPortuguese>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
