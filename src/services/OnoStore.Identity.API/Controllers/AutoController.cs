@@ -16,7 +16,7 @@ namespace OnoStore.Identity.API.Controllers
 {
     [ApiController]
     [Route("api/identity")]
-    public class AutoController: Controller
+    public class AutoController: BaseController
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
@@ -32,7 +32,7 @@ namespace OnoStore.Identity.API.Controllers
         [HttpPost("new-account")]
         public async Task<ActionResult> Register(UserRegistry userRegistry)
         {
-            if (!ModelState.IsValid) return BadRequest();//CustomResponse(ModelState);
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             var user = new IdentityUser
             {
@@ -46,42 +46,41 @@ namespace OnoStore.Identity.API.Controllers
             if (result.Succeeded)
             {
                 // await _signInManager.SignInAsync(user, false); - it's possible to login now
-                return Ok(await GenerateJwt(userRegistry.Email));
-                //return CustomResponse(await GerarJwt(usuarioRegistro.Email));
+                //return Ok(await GenerateJwt(userRegistry.Email));
+                return CustomResponse(await GenerateJwt(userRegistry.Email));
             }
 
-            //foreach (var error in result.Errors)
-            //{
-            //    AdicionarErroProcessamento(error.Description);
-            //}
+            foreach (var error in result.Errors)
+            {
+                AddErrorProcessing(error.Description);
+            }
 
-            //return CustomResponse();
-            return BadRequest();
+            return CustomResponse();
         }
 
         [HttpPost("authenticate")]
         public async Task<ActionResult> Login(UserLogin userLogin)
         {
-            if (!ModelState.IsValid) return BadRequest();//CustomResponse(ModelState);
+            if (!ModelState.IsValid) return CustomResponse(ModelState);
 
             var result = await _signInManager.PasswordSignInAsync(userLogin.Email, userLogin.Password,
                 false, true);
 
             if (result.Succeeded)
             {
-                return Ok(await GenerateJwt(userLogin.Email));
-                //return CustomResponse(await GerarJwt(usuarioLogin.Email));
+                //return Ok(await GenerateJwt(userLogin.Email));
+                return CustomResponse(await GenerateJwt(userLogin.Email));
             }
 
-            //if (result.IsLockedOut)
-            //{
-            //    AdicionarErroProcessamento("Usuário temporariamente bloqueado por tentativas inválidas");
-            //    return CustomResponse();
-            //}
-            //AdicionarErroProcessamento("Usuário ou Senha incorretos");
-            //return CustomResponse();
+            if (result.IsLockedOut)
+            {
+                AddErrorProcessing("User temporarily blocked after many attempts.");
+                return CustomResponse();
+            }
+            AddErrorProcessing("Wrong user or password.");
+            return CustomResponse();
 
-            return BadRequest();
+            //return BadRequest();
         }
 
         private async Task<UserResponseLogin> GenerateJwt(string email)
