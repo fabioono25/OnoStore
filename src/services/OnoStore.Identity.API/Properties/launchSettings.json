@@ -9,7 +9,7 @@
   },
   "$schema": "http://json.schemastore.org/launchsettings.json",
   "profiles": {
-    "IIS Express": {
+    "IIS Express - DEV": {
       "commandName": "IISExpress",
       "launchBrowser": true,
       "launchUrl": "swagger",
@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "OnoStore.Identity.API": {
+    "SelfHosting API - DEV": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
