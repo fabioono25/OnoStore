@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace OnoStore.Identity.API.Controllers
 {
     [ApiController]
-    public abstract class BaseController: Controller
+    public abstract class BaseController : Controller
     {
         protected ICollection<string> Errors = new List<string>();
 

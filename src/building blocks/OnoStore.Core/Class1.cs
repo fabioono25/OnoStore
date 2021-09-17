@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OnoStore.Core
+﻿namespace OnoStore.Core
 {
     public class Class1
     {

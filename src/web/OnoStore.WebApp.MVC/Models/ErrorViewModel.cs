@@ -1,5 +1,3 @@
-using System;
-
 namespace OnoStore.WebApp.MVC.Models
 {
     public class ErrorViewModel
