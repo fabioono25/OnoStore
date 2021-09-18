@@ -3,16 +3,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using OnoStore.WebApp.MVC.Extensions;
-using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Services
 {
-    public class AutenticationService : Service, IAutenticationService
+    public class AuthenticationService : Service, IAutenticationService
     {
         private readonly HttpClient _httpClient;
 
-        public AutenticationService(HttpClient httpClient,
+        public AuthenticationService(HttpClient httpClient,
                                    IOptions<AppSettings> settings)
         {
             httpClient.BaseAddress = new Uri(settings.Value.AuthenticationUrl);
@@ -26,13 +25,13 @@ namespace OnoStore.WebApp.MVC.Services
 
             var response = await _httpClient.PostAsync("/api/identity/authenticate", loginContent);
 
-            var test = await response.Content.ReadAsStringAsync();
+            // var test = await response.Content.ReadAsStringAsync();
 
-            if (!TreatErrorsResponse(response))
+            if (!TransformErrorsResponse(response))
             {
                 return new UserResponseLogin
                 {
-                    //ResponseResult = await DeserializeObjectResponse<ResponseResult>(response)
+                    ResponseResult = await DeserializeObjectResponse<ResponseResult>(response)
                 };
             }
 
@@ -41,15 +40,15 @@ namespace OnoStore.WebApp.MVC.Services
 
         public async Task<UserResponseLogin> Register(UserRegistry userRegistry)
         {
-            var registroContent = ObtainContent(userRegistry);
+            var obtainContent = ObtainContent(userRegistry);
 
-            var response = await _httpClient.PostAsync("/api/identity/register", registroContent);
+            var response = await _httpClient.PostAsync("/api/identity/register", obtainContent);
 
-            if (!TreatErrorsResponse(response))
+            if (!TransformErrorsResponse(response))
             {
                 return new UserResponseLogin
                 {
-                    //ResponseResult = await DeserializeObjectResponse<ResponseResult>(response)
+                    ResponseResult = await DeserializeObjectResponse<ResponseResult>(response)
                 };
             }
 

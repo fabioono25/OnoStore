@@ -16,13 +16,13 @@ namespace OnoStore.Identity.API.Controllers
 {
     [ApiController]
     [Route("api/identity")]
-    public class AutoController : BaseController
+    public class AuthController : BaseController
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
 
-        public AutoController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
+        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
         {
             _signInManager = signInManager;
             _userManager = userManager;

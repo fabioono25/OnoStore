@@ -13,7 +13,7 @@ using OnoStore.WebApp.MVC.Services;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {
-    public class IdentityController: Controller
+    public class IdentityController: BaseController
     {
         private readonly IAutenticationService _autenticationService;
 
@@ -37,7 +37,7 @@ namespace OnoStore.WebApp.MVC.Controllers
 
             var response = await _autenticationService.Register(usuarioRegistry);
 
-            //if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioRegistry);
+            if (ResponseHasErrors(response.ResponseResult)) return View(usuarioRegistry);
 
             await ExecuteLogin(response);
 
@@ -61,11 +61,11 @@ namespace OnoStore.WebApp.MVC.Controllers
 
             var response = await _autenticationService.Login(userLogin);
 
-            //if (ResponsePossuiErros(resposta.ResponseResult)) return View(userLogin);
+            if (ResponseHasErrors(response.ResponseResult)) return View(userLogin);
 
             await ExecuteLogin(response);
 
-            //if (string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
+            if (string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
 
             return LocalRedirect(returnUrl);
         }

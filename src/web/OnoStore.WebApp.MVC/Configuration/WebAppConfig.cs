@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnoStore.WebApp.MVC.Extensions;
 
 namespace OnoStore.WebApp.MVC.Configuration
 {
@@ -21,16 +22,20 @@ namespace OnoStore.WebApp.MVC.Configuration
 
         public static void UseMvcConfiguration(this IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/erro/500");
-                app.UseStatusCodePagesWithRedirects("/erro/{0}");
-                app.UseHsts();
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //}
+            //else
+            //{
+            //    app.UseExceptionHandler("/error/500");                   // using the exception middleware - probably error in the server
+            //    app.UseStatusCodePagesWithRedirects("/error/{0}");       // using the exception middleware - treated errors
+            //    app.UseHsts();
+            //}
+
+            app.UseExceptionHandler("/error/500");                   // using the exception middleware - probably error in the server
+            app.UseStatusCodePagesWithRedirects("/error/{0}");       // using the exception middleware - treated errors
+            app.UseHsts();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -39,7 +44,7 @@ namespace OnoStore.WebApp.MVC.Configuration
 
             app.UseIdentityConfiguration();
 
-           // app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

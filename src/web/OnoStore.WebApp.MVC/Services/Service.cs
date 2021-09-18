@@ -6,6 +6,7 @@ using OnoStore.WebApp.MVC.Extensions;
 
 namespace OnoStore.WebApp.MVC.Services
 {
+    // only with inheritance (not instantiated)
     public abstract class Service
     {
         protected StringContent ObtainContent(object dado)
@@ -26,7 +27,7 @@ namespace OnoStore.WebApp.MVC.Services
             return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(), options);
         }
 
-        protected bool TreatErrorsResponse(HttpResponseMessage response)
+        protected bool TransformErrorsResponse(HttpResponseMessage response)    
         {
             switch ((int)response.StatusCode)
             {
