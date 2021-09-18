@@ -7,17 +7,18 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.WebApp.MVC.Models;
+using OnoStore.WebApp.MVC.Services;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {
     public class IdentityController: Controller
     {
-        //private readonly IAutenticacaoService _autenticacaoService;
+        private readonly IAutenticationService _autenticationService;
 
-        //public IdentityController(IAutenticacaoService autenticacaoService)
-        //{
-        //    _autenticacaoService = autenticacaoService;
-        //}
+        public IdentityController(IAutenticationService autenticationService)
+        {
+            _autenticationService = autenticationService;
+        }
 
         [HttpGet]
         [Route("register")]
@@ -32,7 +33,7 @@ namespace OnoStore.WebApp.MVC.Controllers
         {
             if (!ModelState.IsValid) return View(usuarioRegistry);
 
-            //var resposta = await _autenticacaoService.Registro(usuarioRegistry);
+            var response = await _autenticationService.Register(usuarioRegistry);
 
             //if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioRegistry);
 
@@ -56,7 +57,7 @@ namespace OnoStore.WebApp.MVC.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (!ModelState.IsValid) return View(userLogin);
 
-            //var resposta = await _autenticacaoService.Login(userLogin);
+            var response = await _autenticationService.Login(userLogin);
 
             //if (ResponsePossuiErros(resposta.ResponseResult)) return View(userLogin);
 
