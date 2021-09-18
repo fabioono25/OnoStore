@@ -1,7 +1,9 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -37,7 +39,7 @@ namespace OnoStore.WebApp.MVC.Controllers
 
             //if (ResponsePossuiErros(resposta.ResponseResult)) return View(usuarioRegistry);
 
-            //await RealizarLogin(resposta);
+            await ExecuteLogin(response);
 
             return RedirectToAction("Index", "Home");
         }
@@ -61,7 +63,7 @@ namespace OnoStore.WebApp.MVC.Controllers
 
             //if (ResponsePossuiErros(resposta.ResponseResult)) return View(userLogin);
 
-            //await RealizarLogin(resposta);
+            await ExecuteLogin(response);
 
             //if (string.IsNullOrEmpty(returnUrl)) return RedirectToAction("Index", "Home");
 
@@ -76,31 +78,31 @@ namespace OnoStore.WebApp.MVC.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //private async Task RealizarLogin(UsuarioRespostaLogin resposta)
-        //{
-        //    var token = ObterTokenFormatado(resposta.AccessToken);
+        private async Task ExecuteLogin(UserResponseLogin resposta)
+        {
+            var token = ObtainFormattedToken(resposta.AccessToken);
+            
+            var claims = new List<Claim>();
+            claims.Add(new Claim("JWT", resposta.AccessToken));
+            claims.AddRange(token.Claims);
 
-        //    var claims = new List<Claim>();
-        //    claims.Add(new Claim("JWT", resposta.AccessToken));
-        //    claims.AddRange(token.Claims);
+            var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-        //    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties
+            {
+                ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60),
+                IsPersistent = true
+            };
 
-        //    var authProperties = new AuthenticationProperties
-        //    {
-        //        ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60),
-        //        IsPersistent = true
-        //    };
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+        }
 
-        //    await HttpContext.SignInAsync(
-        //        CookieAuthenticationDefaults.AuthenticationScheme,
-        //        new ClaimsPrincipal(claimsIdentity),
-        //        authProperties);
-        //}
-
-        //private static JwtSecurityToken ObterTokenFormatado(string jwtToken)
-        //{
-        //    return new JwtSecurityTokenHandler().ReadToken(jwtToken) as JwtSecurityToken;
-        //}
+        private static JwtSecurityToken ObtainFormattedToken(string jwtToken)
+        {
+            return new JwtSecurityTokenHandler().ReadToken(jwtToken) as JwtSecurityToken;
+        }
     }
 }

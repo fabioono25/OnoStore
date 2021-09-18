@@ -13,7 +13,7 @@ namespace OnoStore.WebApp.MVC.Extensions
         Guid ObterUserId();
         string ObterUserEmail();
         string ObterUserToken();
-        bool EstaAutenticado();
+        bool IsAuthenticated();
         bool PossuiRole(string role);
         IEnumerable<Claim> ObterClaims();
         HttpContext ObterHttpContext();
@@ -32,20 +32,20 @@ namespace OnoStore.WebApp.MVC.Extensions
 
         public Guid ObterUserId()
         {
-            return EstaAutenticado() ? Guid.Parse(_accessor.HttpContext.User.GetUserId()) : Guid.Empty;
+            return IsAuthenticated() ? Guid.Parse(_accessor.HttpContext.User.GetUserId()) : Guid.Empty;
         }
 
         public string ObterUserEmail()
         {
-            return EstaAutenticado() ? _accessor.HttpContext.User.GetUserEmail() : "";
+            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserEmail() : "";
         }
 
         public string ObterUserToken()
         {
-            return EstaAutenticado() ? _accessor.HttpContext.User.GetUserToken() : "";
+            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserToken() : "";
         }
 
-        public bool EstaAutenticado()
+        public bool IsAuthenticated()
         {
             return _accessor.HttpContext.User.Identity.IsAuthenticated;
         }

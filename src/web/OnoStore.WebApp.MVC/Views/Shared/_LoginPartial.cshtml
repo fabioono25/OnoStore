@@ -1,13 +1,13 @@
-﻿@*@using OnoStore.WebApp.MVC.Extensions
-@inject IUser AppUser*@
+﻿@using OnoStore.WebApp.MVC.Extensions
+@inject IUser AppUser
 
 <ul class="navbar-nav">
-    @*@if (AppUser.EstaAutenticado())*@
-    @if (Context.User.Identity.IsAuthenticated)
+    @*@if (Context.User.Identity.IsAuthenticated)*@
+    @if (AppUser.IsAuthenticated())
     {
         <li class="nav-item">
             HI
-            @*<a class="nav-link text-dark" title="Manage">Olá @AppUser.ObterUserEmail()</a>*@
+            <a class="nav-link text-dark" title="Manage">Olá @AppUser.ObterUserEmail()</a>
         </li>
     <li class="nav-item">
         <a class="nav-link text-dark" asp-controller="Identity" asp-action="Logout">Logout</a>
