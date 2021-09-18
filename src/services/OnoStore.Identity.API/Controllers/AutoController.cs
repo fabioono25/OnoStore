@@ -29,7 +29,7 @@ namespace OnoStore.Identity.API.Controllers
             _appSettings = appSettings.Value;
         }
 
-        [HttpPost("new-account")]
+        [HttpPost("register")]
         public async Task<ActionResult> Register(UserRegistry userRegistry)
         {
             if (!ModelState.IsValid) return CustomResponse(ModelState);
