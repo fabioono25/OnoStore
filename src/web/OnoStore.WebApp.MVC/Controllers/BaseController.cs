@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnoStore.WebApp.MVC.Models;
+using System.Linq;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {

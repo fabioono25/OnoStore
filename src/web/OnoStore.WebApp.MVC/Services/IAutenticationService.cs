@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using OnoStore.WebApp.MVC.Models;
+﻿using OnoStore.WebApp.MVC.Models;
+using System.Threading.Tasks;
 
 namespace OnoStore.WebApp.MVC.Services
 {

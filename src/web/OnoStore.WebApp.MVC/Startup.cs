@@ -26,7 +26,7 @@ namespace OnoStore.WebApp.MVC
 
             Configuration = builder.Build();
         }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityConfiguration();

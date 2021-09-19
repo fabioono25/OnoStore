@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using OnoStore.WebApp.MVC.Models;
-using System.Diagnostics;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {

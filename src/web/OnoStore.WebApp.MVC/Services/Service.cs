@@ -1,8 +1,8 @@
-﻿using System.Net.Http;
+﻿using OnoStore.WebApp.MVC.Extensions;
+using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using OnoStore.WebApp.MVC.Extensions;
 
 namespace OnoStore.WebApp.MVC.Services
 {
@@ -27,7 +27,7 @@ namespace OnoStore.WebApp.MVC.Services
             return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(), options);
         }
 
-        protected bool TransformErrorsResponse(HttpResponseMessage response)    
+        protected bool TransformErrorsResponse(HttpResponseMessage response)
         {
             switch ((int)response.StatusCode)
             {

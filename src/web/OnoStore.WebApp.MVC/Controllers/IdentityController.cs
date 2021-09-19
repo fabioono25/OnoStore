@@ -1,19 +1,18 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.WebApp.MVC.Models;
 using OnoStore.WebApp.MVC.Services;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {
-    public class IdentityController: BaseController
+    public class IdentityController : BaseController
     {
         private readonly IAutenticationService _autenticationService;
 
@@ -81,7 +80,7 @@ namespace OnoStore.WebApp.MVC.Controllers
         private async Task ExecuteLogin(UserResponseLogin resposta)
         {
             var token = ObtainFormattedToken(resposta.AccessToken);
-            
+
             var claims = new List<Claim>();
             claims.Add(new Claim("JWT", resposta.AccessToken));
             claims.AddRange(token.Claims);
