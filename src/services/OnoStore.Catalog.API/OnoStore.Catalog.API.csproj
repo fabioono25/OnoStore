@@ -14,6 +14,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Data\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\building blocks\OnoStore.Core\OnoStore.Core.csproj" />
   </ItemGroup>
 
 </Project>
