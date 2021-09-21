@@ -11,6 +11,8 @@ namespace OnoStore.WebApp.MVC.Configuration
         {
             services.AddHttpClient<IAutenticationService, AuthenticationService>(); // HTTP service 
 
+            services.AddHttpClient<ICatalogService, CatalogService>(); // HTTP service 
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
         }
