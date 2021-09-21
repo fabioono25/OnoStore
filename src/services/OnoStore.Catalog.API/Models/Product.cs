@@ -6,7 +6,8 @@ using OnoStore.Core.DomainObjects;
 
 namespace OnoStore.Catalog.API.Models
 {
-    public class Product : Entity //, IAggregateRoot
+    // Product é a propria agregacao (nao ha classe filha)
+    public class Product : Entity, IAggregateRoot
     {
         public string Name { get; set; }
         public string Description { get; set; }
