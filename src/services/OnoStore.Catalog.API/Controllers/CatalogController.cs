@@ -5,10 +5,12 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.Catalog.API.Models;
+using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Catalog.API.Controllers
 {
     [ApiController]
+    [Authorize]
     public class CatalogController : Controller
     {
         private readonly IProductRepository _productRepository;
@@ -18,14 +20,14 @@ namespace OnoStore.Catalog.API.Controllers
             _productRepository = productRepository;
         }
 
-        //[AllowAnonymous]
+        [AllowAnonymous]
         [HttpGet("catalog/products")]
         public async Task<IEnumerable<Product>> Index()
         {
             return await _productRepository.GetAll();
         }
 
-        //[ClaimsAuthorize("Catalog", "Read")]
+        [ClaimsAuthorize("Catalog", "Read")]
         [HttpGet("catalog/products/{id}")]
         public async Task<Product> ProductDetail(Guid id)
         {

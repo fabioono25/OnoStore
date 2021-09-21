@@ -41,9 +41,9 @@ namespace OnoStore.Catalog.API.Configuration
 
             app.UseHttpsRedirection();
 
-            app.UseAuthConfiguration();
-
             app.UseRouting();
+
+            app.UseAuthConfiguration();
 
             app.UseCors("Total");
 

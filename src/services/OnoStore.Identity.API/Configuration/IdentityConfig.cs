@@ -1,14 +1,9 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 using NSE.Identidade.API.Extensions;
 using OnoStore.Identity.API.Data;
-using OnoStore.Identity.API.Extensions;
-using System.Text;
 using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Identity.API.Configuration
