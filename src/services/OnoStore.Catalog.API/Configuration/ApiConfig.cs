@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnoStore.Catalog.API.Data;
 using OnoStore.Identity.API.Configuration;
+using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Catalog.API.Configuration
 {
@@ -39,6 +40,8 @@ namespace OnoStore.Catalog.API.Configuration
             }
 
             app.UseHttpsRedirection();
+
+            app.UseAuthConfiguration();
 
             app.UseRouting();
 

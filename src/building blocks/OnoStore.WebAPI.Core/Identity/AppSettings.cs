@@ -1,4 +1,4 @@
-﻿namespace OnoStore.Identity.API.Extensions
+﻿namespace OnoStore.WebAPI.Core.Identity
 {
     public class AppSettings
     {

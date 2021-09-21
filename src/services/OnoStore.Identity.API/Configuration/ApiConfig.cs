@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Identity.API.Configuration
 {
@@ -25,7 +26,7 @@ namespace OnoStore.Identity.API.Configuration
 
             app.UseRouting();
 
-            app.UseIdentityConfiguration();
+            app.UseAuthConfiguration();
 
             app.UseEndpoints(endpoints =>
             {

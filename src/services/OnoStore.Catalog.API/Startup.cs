@@ -10,6 +10,7 @@ using OnoStore.Catalog.API.Data;
 using OnoStore.Catalog.API.Data.Repository;
 using OnoStore.Catalog.API.Models;
 using OnoStore.Identity.API.Configuration;
+using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Catalog.API
 {
@@ -37,6 +38,8 @@ namespace OnoStore.Catalog.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiConfiguration(Configuration);
+
+            services.AddJwtConfiguration(Configuration);
 
             services.AddSwaggerConfiguration();
 

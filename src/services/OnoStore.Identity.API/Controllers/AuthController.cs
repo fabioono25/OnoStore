@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
-using OnoStore.Identity.API.Extensions;
 using OnoStore.Identity.API.Models.UserViewModels;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Identity.API.Controllers
 {

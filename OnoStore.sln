@@ -17,31 +17,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MVC", "MVC", "{6EF9F3FD-881
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.Identity.API", "src\services\OnoStore.Identity.API\OnoStore.Identity.API.csproj", "{64C60C43-0D92-475A-B38B-08BF81A3A183}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.WebApp.MVC", "src\web\OnoStore.WebApp.MVC\OnoStore.WebApp.MVC.csproj", "{3CA8C1AD-7734-4A19-AC28-AF1B28D766FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.WebApp.MVC", "src\web\OnoStore.WebApp.MVC\OnoStore.WebApp.MVC.csproj", "{3CA8C1AD-7734-4A19-AC28-AF1B28D766FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{F785E291-10A4-4312-B145-C9523CDABE8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.Core", "src\building blocks\OnoStore.Core\OnoStore.Core.csproj", "{1568A587-EA3F-4D18-B6C1-895BB9679ECE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.Core", "src\building blocks\OnoStore.Core\OnoStore.Core.csproj", "{1568A587-EA3F-4D18-B6C1-895BB9679ECE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Cart", "Cart", "{D3247DBA-F9CD-4DCF-B663-154B141E01BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.Cart.API", "src\services\OnoStore.Cart.API\OnoStore.Cart.API.csproj", "{C2EA35EA-6DBB-49F2-B865-5336B8785EA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.Cart.API", "src\services\OnoStore.Cart.API\OnoStore.Cart.API.csproj", "{C2EA35EA-6DBB-49F2-B865-5336B8785EA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{3614FD7B-FF7F-46DF-BCF2-912F4F635100}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.Catalog.API", "src\services\OnoStore.Catalog.API\OnoStore.Catalog.API.csproj", "{4BD779BE-3840-4A70-A64C-1775DB386D02}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.Catalog.API", "src\services\OnoStore.Catalog.API\OnoStore.Catalog.API.csproj", "{4BD779BE-3840-4A70-A64C-1775DB386D02}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Customer", "Customer", "{F2C84D70-BC8D-4608-A1EC-7B92158537F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.Customer.API", "src\services\OnoStore.Customer.API\OnoStore.Customer.API.csproj", "{5F672685-F083-4F14-A100-4DC62B6AEB71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.Customer.API", "src\services\OnoStore.Customer.API\OnoStore.Customer.API.csproj", "{5F672685-F083-4F14-A100-4DC62B6AEB71}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Payment", "Payment", "{EC8F516F-ACC0-4E55-BBE2-3D5EA69B9BD5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.Payment.API", "src\services\OnoStore.Payment.API\OnoStore.Payment.API.csproj", "{C71ED245-C195-47DC-9AFD-52153D4067F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.Payment.API", "src\services\OnoStore.Payment.API\OnoStore.Payment.API.csproj", "{C71ED245-C195-47DC-9AFD-52153D4067F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{AE96134C-176E-4DC9-8B8B-08D5D063EECB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.Order.API", "src\services\OnoStore.Order.API\OnoStore.Order.API.csproj", "{058A9EA3-C3EB-46D0-8738-B4AE614FD73D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnoStore.Order.API", "src\services\OnoStore.Order.API\OnoStore.Order.API.csproj", "{058A9EA3-C3EB-46D0-8738-B4AE614FD73D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{1AA85D64-098C-4812-A144-B889728155D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnoStore.WebAPI.Core", "src\building blocks\OnoStore.WebAPI.Core\OnoStore.WebAPI.Core.csproj", "{2358AC31-438C-4E1D-8E6D-1633DB2DE1F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +85,10 @@ Global
 		{058A9EA3-C3EB-46D0-8738-B4AE614FD73D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{058A9EA3-C3EB-46D0-8738-B4AE614FD73D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{058A9EA3-C3EB-46D0-8738-B4AE614FD73D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2358AC31-438C-4E1D-8E6D-1633DB2DE1F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2358AC31-438C-4E1D-8E6D-1633DB2DE1F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2358AC31-438C-4E1D-8E6D-1633DB2DE1F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2358AC31-438C-4E1D-8E6D-1633DB2DE1F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,6 +113,8 @@ Global
 		{C71ED245-C195-47DC-9AFD-52153D4067F6} = {EC8F516F-ACC0-4E55-BBE2-3D5EA69B9BD5}
 		{AE96134C-176E-4DC9-8B8B-08D5D063EECB} = {3F9E636A-3AD0-475B-8DB7-AD1D5A216675}
 		{058A9EA3-C3EB-46D0-8738-B4AE614FD73D} = {AE96134C-176E-4DC9-8B8B-08D5D063EECB}
+		{1AA85D64-098C-4812-A144-B889728155D6} = {EB9DEDF6-CEB7-48BF-8EF9-C9BE9C9CA20A}
+		{2358AC31-438C-4E1D-8E6D-1633DB2DE1F7} = {1AA85D64-098C-4812-A144-B889728155D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {529EAE6C-7CDE-430E-832D-F4086EE90671}
