@@ -33,7 +33,7 @@ namespace OnoStore.WebApp.MVC.Services
 
         public async Task<ProductViewModel> GetById(Guid id)
         {
-            var response = await _httpClient.GetAsync($"/catalog/products/{id}");
+            var response = await _httpClient.GetAsync($"/catalog/products/{id}"); // the user needs to be authenticated
 
             TransformErrorsResponse(response);
 
