@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Threading.Tasks;
+using Polly.CircuitBreaker;
 
 namespace OnoStore.WebApp.MVC.Extensions
 {
@@ -23,6 +24,18 @@ namespace OnoStore.WebApp.MVC.Extensions
             {
                 HandleRequestExceptionAsync(httpContext, ex);
             }
+            //catch (ValidationApiException ex)
+            //{
+            //    HandleRequestExceptionAsync(httpContext, ex.StatusCode);
+            //}
+            //catch (ApiException ex)
+            //{
+            //    HandleRequestExceptionAsync(httpContext, ex.StatusCode);
+            //}
+            catch (BrokenCircuitException)
+            {
+                HandleCircuitBreakerExceptionAsync(httpContext);
+            }
         }
 
         private static void HandleRequestExceptionAsync(HttpContext context, CustomHttpRequestException httpRequestException)
@@ -34,6 +47,11 @@ namespace OnoStore.WebApp.MVC.Extensions
             }
 
             context.Response.StatusCode = (int)httpRequestException.StatusCode;
+        }
+
+        private static void HandleCircuitBreakerExceptionAsync(HttpContext context)
+        {
+            context.Response.Redirect("/system-unavailable");
         }
     }
 }
