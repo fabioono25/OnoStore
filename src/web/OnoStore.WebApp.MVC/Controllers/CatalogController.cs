@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OnoStore.WebApp.MVC.Services;
 using System;
 using System.Threading.Tasks;
-using OnoStore.WebApp.MVC.Services;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {

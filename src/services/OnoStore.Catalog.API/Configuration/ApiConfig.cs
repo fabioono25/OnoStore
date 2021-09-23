@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnoStore.Catalog.API.Data;
-using OnoStore.Identity.API.Configuration;
 using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Catalog.API.Configuration

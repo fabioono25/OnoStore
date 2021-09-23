@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OnoStore.Catalog.API.Models;
 using OnoStore.Core.Data;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OnoStore.Catalog.API.Data.Repository
 {
-    public class ProductRepository: IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly CatalogContext _context;
 

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using OnoStore.WebApp.MVC.Extensions;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using OnoStore.WebApp.MVC.Extensions;
 
 namespace OnoStore.WebApp.MVC.Services.Handlers
 {

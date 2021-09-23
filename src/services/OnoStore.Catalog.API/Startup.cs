@@ -1,14 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 using OnoStore.Catalog.API.Configuration;
-using OnoStore.Catalog.API.Data;
-using OnoStore.Catalog.API.Data.Repository;
-using OnoStore.Catalog.API.Models;
 using OnoStore.Identity.API.Configuration;
 using OnoStore.WebAPI.Core.Identity;
 

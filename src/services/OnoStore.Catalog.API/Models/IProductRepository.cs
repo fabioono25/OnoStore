@@ -1,9 +1,7 @@
-﻿using System;
+﻿using OnoStore.Core.Data;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using OnoStore.Core.Data;
-using OnoStore.Core.DomainObjects;
 
 namespace OnoStore.Catalog.API.Models
 {

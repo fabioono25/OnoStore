@@ -1,6 +1,4 @@
-﻿using System;
-using System.Net.Http;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Services;
@@ -8,6 +6,8 @@ using OnoStore.WebApp.MVC.Services.Handlers;
 using Polly;
 using Polly.Extensions.Http;
 using Polly.Retry;
+using System;
+using System.Net.Http;
 
 namespace OnoStore.WebApp.MVC.Configuration
 {

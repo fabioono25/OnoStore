@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Polly.CircuitBreaker;
 using System.Net;
 using System.Threading.Tasks;
-using Polly.CircuitBreaker;
 
 namespace OnoStore.WebApp.MVC.Extensions
 {

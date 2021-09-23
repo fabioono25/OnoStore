@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc.Razor;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace OnoStore.WebApp.MVC.Extensions
 {

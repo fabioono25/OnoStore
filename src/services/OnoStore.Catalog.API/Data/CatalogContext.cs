@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using OnoStore.Catalog.API.Models;
+using OnoStore.Core.Data;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using OnoStore.Catalog.API.Models;
-using OnoStore.Core.Data;
 
 namespace OnoStore.Catalog.API.Data
 {
-    public class CatalogContext: DbContext, IUnitOfWork
+    public class CatalogContext : DbContext, IUnitOfWork
     {
         public CatalogContext(DbContextOptions<CatalogContext> options)
             : base(options) { }

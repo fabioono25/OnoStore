@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.Catalog.API.Models;
 using OnoStore.WebAPI.Core.Identity;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OnoStore.Catalog.API.Controllers
 {
@@ -26,7 +25,7 @@ namespace OnoStore.Catalog.API.Controllers
         {
             return await _productRepository.GetAll();
         }
-            
+
         [ClaimsAuthorize("Catalog", "Read")]
         [HttpGet("catalog/products/{id}")]
         public async Task<Product> ProductDetail(Guid id)
