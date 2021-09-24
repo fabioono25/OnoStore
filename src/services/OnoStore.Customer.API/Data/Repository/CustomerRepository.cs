@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using OnoStore.Core.Data;
+using OnoStore.Customer.API.Models;
 
 namespace OnoStore.Customer.API.Data.Repository
 {
@@ -16,19 +17,19 @@ namespace OnoStore.Customer.API.Data.Repository
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public async Task<IEnumerable<Models.Customer>> ObterTodos()
+        public async Task<IEnumerable<Models.Customer>> GetAll()
         {
             return await _context.Customers.AsNoTracking().ToListAsync();
         }
 
-        public Task<Models.Customer> ObterPorCpf(string cpf)
+        public Task<Models.Customer> GetByCpf(string cpf)
         {
             return _context.Customers.FirstOrDefaultAsync(c => c.Cpf.Number == cpf);
         }
 
-        public void Adicionar(Models.Customer cliente)
+        public void Add(Models.Customer customer)
         {
-            _context.Customers.Add(cliente);
+            _context.Customers.Add(customer);
         }
 
         public void Dispose()

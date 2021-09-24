@@ -7,20 +7,21 @@ namespace OnoStore.Core.Messages
     public abstract class CommandHandler
     {
         protected ValidationResult ValidationResult;
+        //private IUnitOfWork UnitOfWork;
 
         protected CommandHandler()
         {
             ValidationResult = new ValidationResult();
         }
 
-        protected void AdicionarErro(string mensagem)
+        protected void AddError(string message)
         {
-            ValidationResult.Errors.Add(new ValidationFailure(string.Empty, mensagem));
+            ValidationResult.Errors.Add(new ValidationFailure(string.Empty, message));
         }
 
-        protected async Task<ValidationResult> PersistirDados(IUnitOfWork uow)
+        protected async Task<ValidationResult> PersistData(IUnitOfWork uow)
         {
-            if (!await uow.Commit()) AdicionarErro("Houve um erro ao persistir os dados");
+            if (!await uow.Commit()) AddError("Error when persist data");
 
             return ValidationResult;
         }

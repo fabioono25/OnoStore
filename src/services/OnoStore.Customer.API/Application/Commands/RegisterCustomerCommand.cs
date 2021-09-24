@@ -32,19 +32,19 @@ namespace OnoStore.Customer.API.Application.Commands
             {
                 RuleFor(c => c.Id)
                     .NotEqual(Guid.Empty)
-                    .WithMessage("Id do cliente inválido");
+                    .WithMessage("Invalid Customer Id.");
 
                 RuleFor(c => c.Name)
                     .NotEmpty()
-                    .WithMessage("O nome do cliente não foi informado");
+                    .WithMessage("Name of the customer should be informed.");
 
                 RuleFor(c => c.Cpf)
                     .Must(HasValidCpf)
-                    .WithMessage("O CPF informado não é válido.");
+                    .WithMessage("Invalid CPF.");
 
                 RuleFor(c => c.Email)
                     .Must(HasValidEmail)
-                    .WithMessage("O e-mail informado não é válido.");
+                    .WithMessage("Invalid Email.");
             }
 
             protected static bool HasValidCpf(string cpf)

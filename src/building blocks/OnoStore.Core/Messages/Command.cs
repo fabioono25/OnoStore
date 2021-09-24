@@ -1,9 +1,10 @@
 ﻿using System;
 using FluentValidation.Results;
+using MediatR;
 
 namespace OnoStore.Core.Messages
 {
-    public abstract class Command : Message //, IRequest<ValidationResult>
+    public abstract class Command : Message, IRequest<ValidationResult>
     {
         public DateTime Timestamp { get; private set; } // when this command generated this result
         public ValidationResult ValidationResult { get; set; }

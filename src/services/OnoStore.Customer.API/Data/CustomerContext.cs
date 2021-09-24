@@ -40,10 +40,10 @@ namespace OnoStore.Customer.API.Data
 
         public async Task<bool> Commit()
         {
-            var sucesso = await base.SaveChangesAsync() > 0;
+            var success = await base.SaveChangesAsync() > 0;
             //if (sucesso) await _mediatorHandler.PublicarEventos(this);
 
-            return sucesso;
+            return success;
         }
     }
 
@@ -64,7 +64,7 @@ namespace OnoStore.Customer.API.Data
 
         //    var tasks = domainEvents
         //        .Select(async (domainEvent) => {
-        //            await mediator.PublicarEvento(domainEvent);
+        //            await mediator.PublishEvent(domainEvent);
         //        });
 
         //    await Task.WhenAll(tasks);

@@ -1,13 +1,15 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using FluentValidation.Results;
+using MediatR;
 using NSE.Clientes.API.Application.Events;
 using OnoStore.Core.Messages;
 using OnoStore.Customer.API.Data.Repository;
+using OnoStore.Customer.API.Models;
 
 namespace OnoStore.Customer.API.Application.Commands
 {
-    public class CustomerCommandHandler : CommandHandler //, IRequestHandler<RegisterCustomerCommand, ValidationResult>
+    public class CustomerCommandHandler : CommandHandler, IRequestHandler<RegisterCustomerCommand, ValidationResult>
     {
         private readonly ICustomerRepository _customerRepository;
 
@@ -22,20 +24,19 @@ namespace OnoStore.Customer.API.Application.Commands
 
             var customer = new Models.Customer(message.Id, message.Name, message.Email, message.Cpf);
 
-            //var clienteExistente = await _customerRepository.ObterPorCpf(cliente.Cpf.Numero);
+            var customerExist = await _customerRepository.GetByCpf(customer.Cpf.Number);
 
-            //if (clienteExistente != null)
-            //{
-            //    AdicionarErro("Este CPF já está em uso.");
-            //    return ValidationResult;
-            //}
+            if (customerExist != null)
+            {
+                AddError("CPF is in use already.");
+                return ValidationResult;
+            }
 
-            //_customerRepository.Adicionar(cliente);
+            _customerRepository.Add(customer);
 
             //cliente.AdicionarEvento(new ClienteRegistradoEvent(message.Id, message.Nome, message.Email, message.Cpf));
 
-            //return await PersistirDados(_customerRepository.UnitOfWork);
-            return null;
+            return await PersistData(_customerRepository.UnitOfWork);
         }
     }
 }
