@@ -1,2 +1,2 @@
 # OnoStore
-e-Commerce
+e-Commerce for study
