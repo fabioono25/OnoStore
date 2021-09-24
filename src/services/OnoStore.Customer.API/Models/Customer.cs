@@ -3,7 +3,7 @@ using OnoStore.Core.DomainObjects;
 
 namespace OnoStore.Customer.API.Models
 {
-    public class Client : Entity, IAggregateRoot
+    public class Customer : Entity, IAggregateRoot
     {
         public string Nome { get; private set; }
         public Email Email { get; private set; }
@@ -12,9 +12,9 @@ namespace OnoStore.Customer.API.Models
         public Address Address { get; private set; }
 
         // EF Relation
-        protected Client() { }
+        protected Customer() { }
 
-        public Client(Guid id, string nome, string email, string cpf)
+        public Customer(Guid id, string nome, string email, string cpf)
         {
             Id = id;
             Nome = nome;

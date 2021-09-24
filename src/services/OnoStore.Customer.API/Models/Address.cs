@@ -12,10 +12,14 @@ namespace OnoStore.Customer.API.Models
         public string ZipCode { get; private set; }
         public string City { get; private set; }
         public string State { get; private set; }
-        public Guid ClientId { get; private set; }
+        public Guid CustomerId { get; private set; }
 
         // EF Relation
-        public Client Client { get; protected set; }
+        public Customer Customer { get; protected set; }
+
+        public Address()
+        {
+        }
 
         public Address(string street, string number, string complement, string neighbor, string cep, string city, string state)
         {
