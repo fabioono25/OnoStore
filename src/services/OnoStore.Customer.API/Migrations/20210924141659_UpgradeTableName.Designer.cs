@@ -74,7 +74,7 @@ namespace OnoStore.Customer.API.Migrations
                     b.Property<bool>("Deleted")
                         .HasColumnType("bit");
 
-                    b.Property<string>("Nome")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("varchar(200)");
 
