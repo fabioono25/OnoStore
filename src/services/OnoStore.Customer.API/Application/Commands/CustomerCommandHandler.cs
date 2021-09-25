@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using FluentValidation.Results;
 using MediatR;
-using NSE.Clientes.API.Application.Events;
+using OnoStore.Customer.API.Application.Events;
 using OnoStore.Core.Messages;
 using OnoStore.Customer.API.Data.Repository;
 using OnoStore.Customer.API.Models;
@@ -33,8 +33,8 @@ namespace OnoStore.Customer.API.Application.Commands
             }
 
             _customerRepository.Add(customer);
-
-            //cliente.AdicionarEvento(new ClienteRegistradoEvent(message.Id, message.Nome, message.Email, message.Cpf));
+            
+            customer.AddEvent(new RegisteredCustomerEvent(message.Id, message.Name, message.Email, message.Cpf));
 
             return await PersistData(_customerRepository.UnitOfWork);
         }

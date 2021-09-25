@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using OnoStore.Core.Messages;
 
 namespace OnoStore.Core.DomainObjects
 {
+    // rich class: it's normal to have behavior
     public abstract class Entity
     {
         public Guid Id { get; set; }
@@ -11,24 +14,24 @@ namespace OnoStore.Core.DomainObjects
             Id = Guid.NewGuid();
         }
 
-        //private List<Event> _notificacoes;
-        //public IReadOnlyCollection<Event> Notificacoes => _notificacoes?.AsReadOnly();
+        private List<Event> _notifications;
+        public IReadOnlyCollection<Event> Notifications => _notifications?.AsReadOnly();
 
-        //public void AdicionarEvento(Event evento)
-        //{
-        //    _notificacoes = _notificacoes ?? new List<Event>();
-        //    _notificacoes.Add(evento);
-        //}
+        public void AddEvent(Event @event)
+        {
+            _notifications ??= new List<Event>();
+            _notifications.Add(@event);
+        }
 
-        //public void RemoverEvento(Event eventItem)
-        //{
-        //    _notificacoes?.Remove(eventItem);
-        //}
+        public void RemoveEvent(Event eventItem)
+        {
+            _notifications?.Remove(eventItem);
+        }
 
-        //public void LimparEventos()
-        //{
-        //    _notificacoes?.Clear();
-        //}
+        public void CleanEvents()
+        {
+            _notifications?.Clear();
+        }
 
         public override bool Equals(object obj)
         {

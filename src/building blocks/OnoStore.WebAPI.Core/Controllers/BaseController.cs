@@ -1,9 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using FluentValidation.Results;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using ValidationResult = FluentValidation.Results.ValidationResult;
 
-namespace OnoStore.Identity.API.Controllers
+namespace OnoStore.WebAPI.Core.Controllers
 {
     [ApiController]
     public abstract class BaseController : Controller
@@ -27,6 +30,16 @@ namespace OnoStore.Identity.API.Controllers
         {
             var errors = modelState.Values.SelectMany(e => e.Errors);
             foreach (var error in errors)
+            {
+                AddErrorProcessing(error.ErrorMessage);
+            }
+
+            return CustomResponse();
+        }
+
+        protected ActionResult CustomResponse(ValidationResult validationResult)
+        {
+            foreach (var error in validationResult.Errors)
             {
                 AddErrorProcessing(error.ErrorMessage);
             }

@@ -1,20 +1,20 @@
 ﻿using System;
 using OnoStore.Core.Messages;
 
-namespace NSE.Clientes.API.Application.Events
+namespace OnoStore.Customer.API.Application.Events
 {
-    public class ClienteRegistradoEvent : Event
+    public class RegisteredCustomerEvent : Event
     {
         public Guid Id { get; private set; }
-        public string Nome { get; private set; }
+        public string Name { get; private set; }
         public string Email { get; private set; }
         public string Cpf { get; private set; }
 
-        public ClienteRegistradoEvent(Guid id, string nome, string email, string cpf)
+        public RegisteredCustomerEvent(Guid id, string name, string email, string cpf)
         {
             AggregateId = id;
             Id = id;
-            Nome = nome;
+            Name = name;
             Email = email;
             Cpf = cpf;
         }

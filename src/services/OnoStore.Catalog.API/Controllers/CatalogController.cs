@@ -5,12 +5,13 @@ using OnoStore.WebAPI.Core.Identity;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using OnoStore.WebAPI.Core.Controllers;
 
 namespace OnoStore.Catalog.API.Controllers
 {
     [ApiController]
     [Authorize]
-    public class CatalogController : Controller
+    public class CatalogController : BaseController
     {
         private readonly IProductRepository _productRepository;
 

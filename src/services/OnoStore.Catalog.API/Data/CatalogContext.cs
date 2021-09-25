@@ -4,6 +4,7 @@ using OnoStore.Core.Data;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using OnoStore.Core.Messages;
 
 namespace OnoStore.Catalog.API.Data
 {
@@ -17,7 +18,7 @@ namespace OnoStore.Catalog.API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<ValidationResult>();
-            //modelBuilder.Ignore<Event>();
+            modelBuilder.Ignore<Event>();
 
             foreach (var property in modelBuilder.Model.GetEntityTypes().SelectMany(
                 e => e.GetProperties().Where(p => p.ClrType == typeof(string))))
