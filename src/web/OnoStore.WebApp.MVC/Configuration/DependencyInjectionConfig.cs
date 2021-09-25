@@ -8,6 +8,7 @@ using Polly.Extensions.Http;
 using Polly.Retry;
 using System;
 using System.Net.Http;
+using Microsoft.AspNetCore.Mvc.DataAnnotations;
 
 namespace OnoStore.WebApp.MVC.Configuration
 {
@@ -15,6 +16,8 @@ namespace OnoStore.WebApp.MVC.Configuration
     {
         public static void RegisterServices(this IServiceCollection services)
         {
+            services.AddSingleton<IValidationAttributeAdapterProvider, CpfValidationAttributeAdapterProvider>();
+
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>(); // not enough - we need to listen in some service
 
             services.AddHttpClient<IAutenticationService, AuthenticationService>(); // HTTP service 
