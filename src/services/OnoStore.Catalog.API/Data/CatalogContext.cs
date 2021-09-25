@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnoStore.Catalog.API.Models;
 using OnoStore.Core.Data;
+using OnoStore.Core.Messages;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using OnoStore.Core.Messages;
 
 namespace OnoStore.Catalog.API.Data
 {

@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OnoStore.Core.Data;
 using OnoStore.Core.DomainObjects;
 using OnoStore.Core.Mediator;
 using OnoStore.Core.Messages;
 using OnoStore.Customer.API.Models;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnoStore.Customer.API.Data
 {

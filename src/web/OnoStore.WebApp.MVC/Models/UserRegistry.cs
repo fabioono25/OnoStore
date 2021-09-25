@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using OnoStore.WebApp.MVC.Extensions;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using OnoStore.WebApp.MVC.Extensions;
 
 namespace OnoStore.WebApp.MVC.Models
 {

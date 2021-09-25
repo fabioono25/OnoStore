@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.Catalog.API.Models;
+using OnoStore.WebAPI.Core.Controllers;
 using OnoStore.WebAPI.Core.Identity;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using OnoStore.WebAPI.Core.Controllers;
 
 namespace OnoStore.Catalog.API.Controllers
 {

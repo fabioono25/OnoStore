@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OnoStore.Core.Messages;
+using System;
 using System.Collections.Generic;
-using OnoStore.Core.Messages;
 
 namespace OnoStore.Core.DomainObjects
 {

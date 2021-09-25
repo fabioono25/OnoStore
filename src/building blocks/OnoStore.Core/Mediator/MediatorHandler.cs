@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
-using System.Threading.Tasks;
 using MediatR;
 using OnoStore.Core.Messages;
+using System.Threading.Tasks;
 
 namespace OnoStore.Core.Mediator
 {

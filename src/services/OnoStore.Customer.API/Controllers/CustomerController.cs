@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnoStore.Core.Mediator;
 using OnoStore.Customer.API.Application.Commands;
 using OnoStore.WebAPI.Core.Controllers;
+using System;
+using System.Threading.Tasks;
 
 namespace OnoStore.Customer.API.Controllers
 {
@@ -23,7 +21,7 @@ namespace OnoStore.Customer.API.Controllers
         {
             var result = await _mediatorHandler.SendCommand(
                 new RegisterCustomerCommand(Guid.NewGuid(), "Fabio", "fabio@ono.com", "63001404663"));
-           
+
             return CustomResponse(result);
         }
     }

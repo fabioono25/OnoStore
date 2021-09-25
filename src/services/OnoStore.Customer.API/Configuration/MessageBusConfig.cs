@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OnoStore.Core.Utils;
 
 namespace OnoStore.Customer.API.Configuration
 {

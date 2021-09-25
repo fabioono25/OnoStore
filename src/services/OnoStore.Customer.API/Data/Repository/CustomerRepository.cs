@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OnoStore.Core.Data;
 using OnoStore.Customer.API.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace OnoStore.Customer.API.Data.Repository
 {

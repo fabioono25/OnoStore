@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using OnoStore.Core.Data;
+using System.Threading.Tasks;
 
 namespace OnoStore.Core.Messages
 {

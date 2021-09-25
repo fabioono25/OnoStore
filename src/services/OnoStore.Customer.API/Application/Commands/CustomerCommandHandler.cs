@@ -1,11 +1,10 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using MediatR;
-using OnoStore.Customer.API.Application.Events;
 using OnoStore.Core.Messages;
-using OnoStore.Customer.API.Data.Repository;
+using OnoStore.Customer.API.Application.Events;
 using OnoStore.Customer.API.Models;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OnoStore.Customer.API.Application.Commands
 {
@@ -17,7 +16,7 @@ namespace OnoStore.Customer.API.Application.Commands
         {
             _customerRepository = customerRepository;
         }
-        
+
         public async Task<ValidationResult> Handle(RegisterCustomerCommand message, CancellationToken cancellationToken)
         {
             if (!message.IsValid()) return message.ValidationResult;
@@ -33,7 +32,7 @@ namespace OnoStore.Customer.API.Application.Commands
             }
 
             _customerRepository.Add(customer);
-            
+
             customer.AddEvent(new RegisteredCustomerEvent(message.Id, message.Name, message.Email, message.Cpf));
 
             return await PersistData(_customerRepository.UnitOfWork);

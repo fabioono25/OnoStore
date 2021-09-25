@@ -1,5 +1,5 @@
-﻿using System;
-using OnoStore.Core.DomainObjects;
+﻿using OnoStore.Core.DomainObjects;
+using System;
 
 namespace OnoStore.Customer.API.Models
 {

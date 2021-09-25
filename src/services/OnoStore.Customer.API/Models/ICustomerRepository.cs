@@ -1,12 +1,10 @@
-﻿using System;
+﻿using OnoStore.Core.Data;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using OnoStore.Core.Data;
 
 namespace OnoStore.Customer.API.Models
 {
-    public interface ICustomerRepository: IRepository<Customer>
+    public interface ICustomerRepository : IRepository<Customer>
     {
         Task<IEnumerable<Models.Customer>> GetAll();
         Task<Models.Customer> GetByCpf(string cpf);

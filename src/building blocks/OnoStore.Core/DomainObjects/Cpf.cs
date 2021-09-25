@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using OnoStore.Core.Utils;
+﻿using OnoStore.Core.Utils;
 
-namespace OnoStore.Core.DomainObjects {
+namespace OnoStore.Core.DomainObjects
+{
     public class Cpf
     {
         public const int CpfMaxLength = 11;
