@@ -14,14 +14,14 @@ namespace OnoStore.Customer.API.Configuration
                 c.SwaggerDoc("v1", new OpenApiInfo()
                 {
                     Title = "OnoStore Customer API",
-                    Description = "Esta API faz parte do curso ASP.NET Core Enterprise Applications.",
-                    Contact = new OpenApiContact() { Name = "Eduardo Pires", Email = "contato@desenvolvedor.io" },
+                    Description = "API for Customer",
+                    Contact = new OpenApiContact() { Name = "Fabio", Email = "fabioono25@gmail.com" },
                     License = new OpenApiLicense() { Name = "MIT", Url = new Uri("https://opensource.org/licenses/MIT") }
                 });
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = "Insira o token JWT desta maneira: Bearer {seu token}",
+                    Description = "JWT Token",
                     Name = "Authorization",
                     Scheme = "Bearer",
                     BearerFormat = "JWT",
