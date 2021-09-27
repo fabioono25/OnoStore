@@ -5,6 +5,12 @@ namespace OnoStore.Identity.API.Models.UserViewModels
     public class UserRegistry
     {
         [Required(ErrorMessage = "Field {0} is mandatory")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Field {0} is mandatory")]
+        public string Cpf { get; set; }
+
+        [Required(ErrorMessage = "Field {0} is mandatory")]
         [EmailAddress(ErrorMessage = "Field {0} with wrong format")]
         public string Email { get; set; }
 

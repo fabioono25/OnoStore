@@ -12,6 +12,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using EasyNetQ;
+using OnoStore.Core.Messages.Integration;
 
 namespace OnoStore.Identity.API.Controllers
 {
@@ -22,6 +24,7 @@ namespace OnoStore.Identity.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
+        private IBus _bus;
 
         public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
         {
@@ -46,6 +49,9 @@ namespace OnoStore.Identity.API.Controllers
 
             if (result.Succeeded)
             {
+                // this is the moment of integration with Customer API (using a Bus)
+                var success = await RegisterCustomer(userRegistry);
+
                 // await _signInManager.SignInAsync(user, false); - it's possible to login now
                 //return Ok(await GenerateJwt(userRegistry.Email));
                 return CustomResponse(await GenerateJwt(userRegistry.Email));
@@ -57,6 +63,25 @@ namespace OnoStore.Identity.API.Controllers
             }
 
             return CustomResponse();
+        }
+
+        private async Task<ResponseMessage> RegisterCustomer(UserRegistry usuarioRegistro)
+        {
+            var user = await _userManager.FindByEmailAsync(usuarioRegistro.Email);
+
+            var userRegistered = new UserRegisteredIntegrationEvent(Guid.Parse(user.Id), usuarioRegistro.Name, usuarioRegistro.Email, usuarioRegistro.Cpf);
+
+            try
+            {
+                _bus = RabbitHutch.CreateBus("host:localhost:5672");
+
+                return await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
+            }
+            catch
+            {
+                await _userManager.DeleteAsync(user);
+                throw;
+            }
         }
 
         [HttpPost("authenticate")]
