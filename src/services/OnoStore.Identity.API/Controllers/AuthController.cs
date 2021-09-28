@@ -12,8 +12,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using EasyNetQ;
 using OnoStore.Core.Messages.Integration;
+using OnoStore.MessageBus;
 
 namespace OnoStore.Identity.API.Controllers
 {
@@ -24,13 +24,14 @@ namespace OnoStore.Identity.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
-        private IBus _bus;
+        private IMessageBus _bus;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
+        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IMessageBus bus)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _bus = bus;
         }
 
         [HttpPost("register")]
@@ -50,7 +51,13 @@ namespace OnoStore.Identity.API.Controllers
             if (result.Succeeded)
             {
                 // this is the moment of integration with Customer API (using a Bus)
-                var success = await RegisterCustomer(userRegistry);
+                var customerResult = await RegisterCustomer(userRegistry);
+
+                if (!customerResult.ValidationResult.IsValid)
+                {
+                    await _userManager.DeleteAsync(user);
+                    return CustomResponse(customerResult.ValidationResult);
+                }
 
                 // await _signInManager.SignInAsync(user, false); - it's possible to login now
                 //return Ok(await GenerateJwt(userRegistry.Email));
@@ -63,25 +70,6 @@ namespace OnoStore.Identity.API.Controllers
             }
 
             return CustomResponse();
-        }
-
-        private async Task<ResponseMessage> RegisterCustomer(UserRegistry usuarioRegistro)
-        {
-            var user = await _userManager.FindByEmailAsync(usuarioRegistro.Email);
-
-            var userRegistered = new UserRegisteredIntegrationEvent(Guid.Parse(user.Id), usuarioRegistro.Name, usuarioRegistro.Email, usuarioRegistro.Cpf);
-
-            try
-            {
-                _bus = RabbitHutch.CreateBus("host:localhost:5672");
-
-                return await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
-            }
-            catch
-            {
-                await _userManager.DeleteAsync(user);
-                throw;
-            }
         }
 
         [HttpPost("authenticate")]
@@ -171,6 +159,24 @@ namespace OnoStore.Identity.API.Controllers
             };
         }
 
+        private async Task<ResponseMessage> RegisterCustomer(UserRegistry userRegistry)
+        {
+            var user = await _userManager.FindByEmailAsync(userRegistry.Email);
+
+            var userRegistered = new UserRegisteredIntegrationEvent(Guid.Parse(user.Id), userRegistry.Name, userRegistry.Email, userRegistry.Cpf);
+
+            try
+            {
+                //_bus = RabbitHutch.CreateBus("host:localhost:5672");
+
+                return await _bus.RequestAsync<UserRegisteredIntegrationEvent, ResponseMessage>(userRegistered);
+            }
+            catch
+            {
+                await _userManager.DeleteAsync(user);
+                throw;
+            }
+        }
         private static long ToUnixEpochDate(DateTime date)
             => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
     }

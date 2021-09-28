@@ -24,6 +24,7 @@ namespace OnoStore.Customer.API.Configuration
             services.AddScoped<CustomerContext>();
 
             // services.AddHostedService<RegisterCustomerIntegrationHandler>(); // Singleton - problems with scoped (MediatorHandler)
+            
         }
     }
 }
