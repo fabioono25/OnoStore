@@ -25,7 +25,7 @@ namespace OnoStore.Customer.API.Services
             _bus = bus;
         }
 
-        private void SetRespond()
+        private void SetResponder()
         {
             _bus.RespondAsync<UserRegisteredIntegrationEvent, ResponseMessage>(async request =>
                 await RegisterCustomer(request));
@@ -35,13 +35,13 @@ namespace OnoStore.Customer.API.Services
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            SetRespond();
+            SetResponder();
             return Task.CompletedTask;
         }
 
         private void OnConnect(object s, EventArgs e)
         {
-            SetRespond();
+            SetResponder();
         }
 
         private async Task<ResponseMessage> RegisterCustomer(UserRegisteredIntegrationEvent message)
