@@ -24,7 +24,7 @@ namespace OnoStore.Cart.API.Model
 
         public CustomerCart() { }
 
-        internal void CalculateValueCart()
+        internal void CalculateTotalValueCart()
         {
             TotalValue = Items.Sum(p => p.CalculateValue());
         }
@@ -34,38 +34,40 @@ namespace OnoStore.Cart.API.Model
             return Items.Any(p => p.ProductId == item.ProductId);
         }
 
-        internal CartItem GetByProductId(Guid produtoId)
+        internal CartItem GetItemByProductId(Guid productId)
         {
-            return Items.FirstOrDefault(p => p.ProductId == produtoId);
+            return Items.FirstOrDefault(p => p.ProductId == productId);
         }
 
         internal void AddItem(CartItem item)
         {
+            //if (!item.IsValid()) return; - it will be validated at the end
+
             item.AssociateCart(Id);
 
-            if (CartExistingItem(item))
+            if (CartExistingItem(item)) // the item is already in the cart
             {
-                var itemExistente = GetByProductId(item.ProductId);
-                itemExistente.AddUnits(item.Quantity);
+                var existingItem = GetItemByProductId(item.ProductId);
+                existingItem.AddUnits(item.Quantity);
 
-                item = itemExistente;
-                Items.Remove(itemExistente);
+                item = existingItem;
+                Items.Remove(existingItem);
             }
 
             Items.Add(item);
-            CalculateValueCart();
+            CalculateTotalValueCart();
         }
 
         internal void UpdateItem(CartItem item)
         {
             item.AssociateCart(Id);
 
-            var itemExistente = GetByProductId(item.ProductId);
+            var existingItem = GetItemByProductId(item.ProductId);
 
-            Items.Remove(itemExistente);
+            Items.Remove(existingItem);
             Items.Add(item);
 
-            CalculateValueCart();
+            CalculateTotalValueCart();
         }
 
         internal void UpdateUnits(CartItem item, int unidades)
@@ -76,15 +78,15 @@ namespace OnoStore.Cart.API.Model
 
         internal void RemoveItem(CartItem item)
         {
-            Items.Remove(GetByProductId(item.ProductId));
-            CalculateValueCart();
+            Items.Remove(GetItemByProductId(item.ProductId));
+            CalculateTotalValueCart();
         }
 
         internal bool IsValid()
         {
-            var erros = Items.SelectMany(i => new CartItem.ItemCartValidation().Validate(i).Errors).ToList();
-            erros.AddRange(new CustomerCartValidation().Validate(this).Errors);
-            ValidationResult = new ValidationResult(erros);
+            var errors = Items.SelectMany(i => new CartItem.ItemCartValidation().Validate(i).Errors).ToList();
+            errors.AddRange(new CustomerCartValidation().Validate(this).Errors);
+            ValidationResult = new ValidationResult(errors);
 
             return ValidationResult.IsValid;
         }
@@ -95,15 +97,15 @@ namespace OnoStore.Cart.API.Model
             {
                 RuleFor(c => c.CustomerId)
                     .NotEqual(Guid.Empty)
-                    .WithMessage("Cliente não reconhecido");
+                    .WithMessage("Customer not found");
 
                 RuleFor(c => c.Items.Count)
                     .GreaterThan(0)
-                    .WithMessage("O carrinho não possui itens");
+                    .WithMessage("Cart without items");
 
                 RuleFor(c => c.TotalValue)
                     .GreaterThan(0)
-                    .WithMessage("O valor total do carrinho precisa ser maior que 0");
+                    .WithMessage("Total value of the cart must be higher than 0");
             }
         }
     }

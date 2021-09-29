@@ -23,9 +23,9 @@ namespace OnoStore.Cart.API.Model
         [JsonIgnore]
         public CustomerCart CustomerCart { get; set; }
 
-        internal void AssociateCart(Guid carrinhoId)
+        internal void AssociateCart(Guid cartId)
         {
-            CartId = carrinhoId;
+            CartId = cartId;
         }
 
         internal decimal CalculateValue()
@@ -33,14 +33,14 @@ namespace OnoStore.Cart.API.Model
             return Quantity * Valor;
         }
 
-        internal void AddUnits(int unidades)
+        internal void AddUnits(int units)
         {
-            Quantity += unidades;
+            Quantity += units;
         }
 
-        internal void UpdateUnits(int unidades)
+        internal void UpdateUnits(int units)
         {
-            Quantity = unidades;
+            Quantity = units;
         }
 
         internal bool IsValid()
@@ -54,23 +54,23 @@ namespace OnoStore.Cart.API.Model
             {
                 RuleFor(c => c.ProductId)
                     .NotEqual(Guid.Empty)
-                    .WithMessage("Id do produto inválido");
+                    .WithMessage("Invalid Product Id");
 
                 RuleFor(c => c.Name)
                     .NotEmpty()
-                    .WithMessage("O nome do produto não foi informado");
+                    .WithMessage("Name of the product is missing");
 
                 RuleFor(c => c.Quantity)
                     .GreaterThan(0)
-                    .WithMessage(item => $"A quantidade miníma para o {item.Name} é 1");
+                    .WithMessage(item => $"Minimum quantity of item {item.Name} is 1");
 
                 RuleFor(c => c.Quantity)
                     .LessThanOrEqualTo(CustomerCart.MAX_QUANTIDADE_ITEM)
-                    .WithMessage(item => $"A quantidade máxima do {item.Name} é {CustomerCart.MAX_QUANTIDADE_ITEM}");
+                    .WithMessage(item => $"Maximum quantity of {item.Name} is {CustomerCart.MAX_QUANTIDADE_ITEM}");
 
                 RuleFor(c => c.Valor)
                     .GreaterThan(0)
-                    .WithMessage(item => $"O valor do {item.Name} precisa ser maior que 0");
+                    .WithMessage(item => $"The value of {item.Name} needs to be more than 0");
             }
         }
     }

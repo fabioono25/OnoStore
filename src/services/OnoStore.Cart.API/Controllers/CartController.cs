@@ -24,20 +24,20 @@ namespace OnoStore.Cart.API.Controllers
         }
 
         [HttpGet("cart")]
-        public async Task<CustomerCart> Obtercart()
+        public async Task<CustomerCart> GetCart()
         {
             return await GetCustomerCart() ?? new CustomerCart();
         }
 
         [HttpPost("cart")]
-        public async Task<IActionResult> AdicionaritemCart(CartItem item)
+        public async Task<IActionResult> AddItemCart(CartItem item)
         {
             var cart = await GetCustomerCart();
 
             if (cart == null)
-                ManipulateNewCart(item);
+                ManipulateNewCart(item); // it's a new cart
             else
-                ManipulateExistinCart(cart, item);
+                ManipulateExistingCart(cart, item);
 
             if (!ValidOperation()) return CustomResponse();
 
@@ -45,11 +45,11 @@ namespace OnoStore.Cart.API.Controllers
             return CustomResponse();
         }
 
-        [HttpPut("cart/{ProductId}")]
-        public async Task<IActionResult> UpdateCartItem(Guid ProductId, CartItem item)
+        [HttpPut("cart/{productId}")]
+        public async Task<IActionResult> UpdateCartItem(Guid productId, CartItem item)
         {
             var cart = await GetCustomerCart();
-            var itemCart = await GetCartItemValidated(ProductId, cart, item);
+            var itemCart = await GetCartItemValidated(productId, cart, item);
             if (itemCart == null) return CustomResponse();
 
             cart.UpdateUnits(itemCart, item.Quantity);
@@ -64,7 +64,7 @@ namespace OnoStore.Cart.API.Controllers
             return CustomResponse();
         }
 
-        [HttpDelete("cart/{ProductId}")]
+        [HttpDelete("cart/{productId}")]
         public async Task<IActionResult> RemoveCartItem(Guid ProductId)
         {
             var cart = await GetCustomerCart();
@@ -98,16 +98,16 @@ namespace OnoStore.Cart.API.Controllers
             ValidateCart(cart);
             _context.CustomerCart.Add(cart);
         }
-        private void ManipulateExistinCart(CustomerCart cart, CartItem item)
+        private void ManipulateExistingCart(CustomerCart cart, CartItem item)
         {
-            var produtoItemExistente = cart.CartExistingItem(item);
+            var productItemExistent = cart.CartExistingItem(item);
 
             cart.AddItem(item);
             ValidateCart(cart);
 
-            if (produtoItemExistente)
+            if (productItemExistent)
             {
-                _context.CartItems.Update(cart.GetByProductId(item.ProductId));
+                _context.CartItems.Update(cart.GetItemByProductId(item.ProductId));
             }
             else
             {
@@ -116,26 +116,26 @@ namespace OnoStore.Cart.API.Controllers
 
             _context.CustomerCart.Update(cart);
         }
-        private async Task<CartItem> GetCartItemValidated(Guid ProductId, CustomerCart cart, CartItem item = null)
+        private async Task<CartItem> GetCartItemValidated(Guid productId, CustomerCart cart, CartItem item = null)
         {
-            if (item != null && ProductId != item.ProductId)
+            if (item != null && productId != item.ProductId)
             {
-                AddErrorProcessing("O item não corresponde ao informado");
+                AddErrorProcessing("Item not correspond to the informed one");
                 return null;
             }
 
             if (cart == null)
             {
-                AddErrorProcessing("cart não encontrado");
+                AddErrorProcessing("Cart not found");
                 return null;
             }
 
             var itemCart = await _context.CartItems
-                .FirstOrDefaultAsync(i => i.CartId == cart.Id && i.ProductId == ProductId);
+                .FirstOrDefaultAsync(i => i.CartId == cart.Id && i.ProductId == productId);
 
             if (itemCart == null || !cart.CartExistingItem(itemCart))
             {
-                AddErrorProcessing("O item não está no cart");
+                AddErrorProcessing("Item not in the cart");
                 return null;
             }
 
@@ -144,7 +144,7 @@ namespace OnoStore.Cart.API.Controllers
         private async Task PersistData()
         {
             var result = await _context.SaveChangesAsync();
-            if (result <= 0) AddErrorProcessing("Não foi possível persistir os dados no banco");
+            if (result <= 0) AddErrorProcessing("Not possible to persist in DB");
         }
         private bool ValidateCart(CustomerCart cart)
         {
