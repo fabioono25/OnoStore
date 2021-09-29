@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\building blocks\OnoStore.Core\OnoStore.Core.csproj" />
+    <ProjectReference Include="..\..\building blocks\OnoStore.WebAPI.Core\OnoStore.WebAPI.Core.csproj" />
   </ItemGroup>
 
 </Project>

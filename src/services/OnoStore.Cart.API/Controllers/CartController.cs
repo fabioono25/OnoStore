@@ -24,67 +24,67 @@ namespace OnoStore.Cart.API.Controllers
         }
 
         [HttpGet("cart")]
-        public async Task<CustomerCart> ObterCarrinho()
+        public async Task<CustomerCart> Obtercart()
         {
-            return await ObterCustomerCart() ?? new CustomerCart();
+            return await GetCustomerCart() ?? new CustomerCart();
         }
 
-        [HttpPost("carrinho")]
-        public async Task<IActionResult> AdicionarItemCarrinho(CartItem item)
+        [HttpPost("cart")]
+        public async Task<IActionResult> AdicionaritemCart(CartItem item)
         {
-            var carrinho = await ObterCustomerCart();
+            var cart = await GetCustomerCart();
 
-            if (carrinho == null)
+            if (cart == null)
                 ManipulateNewCart(item);
             else
-                ManipularCarrinhoExistente(carrinho, item);
+                ManipulateExistinCart(cart, item);
 
             if (!ValidOperation()) return CustomResponse();
 
-            await PersistirDados();
+            await PersistData();
             return CustomResponse();
         }
 
-        [HttpPut("carrinho/{ProductId}")]
-        public async Task<IActionResult> AtualizarItemCarrinho(Guid ProductId, CartItem item)
+        [HttpPut("cart/{ProductId}")]
+        public async Task<IActionResult> UpdateCartItem(Guid ProductId, CartItem item)
         {
-            var carrinho = await ObterCustomerCart();
-            var itemCarrinho = await ObterItemCarrinhoValidado(ProductId, carrinho, item);
-            if (itemCarrinho == null) return CustomResponse();
+            var cart = await GetCustomerCart();
+            var itemCart = await GetCartItemValidated(ProductId, cart, item);
+            if (itemCart == null) return CustomResponse();
 
-            carrinho.UpdateUnits(itemCarrinho, item.Quantity);
+            cart.UpdateUnits(itemCart, item.Quantity);
 
-            ValidarCarrinho(carrinho);
+            ValidateCart(cart);
             if (!ValidOperation()) return CustomResponse();
 
-            _context.CartItems.Update(itemCarrinho);
-            _context.CustomerCart.Update(carrinho);
+            _context.CartItems.Update(itemCart);
+            _context.CustomerCart.Update(cart);
 
-            await PersistirDados();
+            await PersistData();
             return CustomResponse();
         }
 
-        [HttpDelete("carrinho/{ProductId}")]
-        public async Task<IActionResult> RemoverItemCarrinho(Guid ProductId)
+        [HttpDelete("cart/{ProductId}")]
+        public async Task<IActionResult> RemoveCartItem(Guid ProductId)
         {
-            var carrinho = await ObterCustomerCart();
+            var cart = await GetCustomerCart();
 
-            var itemCarrinho = await ObterItemCarrinhoValidado(ProductId, carrinho);
-            if (itemCarrinho == null) return CustomResponse();
+            var itemCart = await GetCartItemValidated(ProductId, cart);
+            if (itemCart == null) return CustomResponse();
 
-            ValidarCarrinho(carrinho);
+            ValidateCart(cart);
             if (!ValidOperation()) return CustomResponse();
 
-            carrinho.RemoveItem(itemCarrinho);
+            cart.RemoveItem(itemCart);
 
-            _context.CartItems.Remove(itemCarrinho);
-            _context.CustomerCart.Update(carrinho);
+            _context.CartItems.Remove(itemCart);
+            _context.CustomerCart.Update(cart);
 
-            await PersistirDados();
+            await PersistData();
             return CustomResponse();
         }
 
-        private async Task<CustomerCart> ObterCustomerCart()
+        private async Task<CustomerCart> GetCustomerCart()
         {
             return await _context.CustomerCart
                 .Include(c => c.Items)
@@ -92,31 +92,31 @@ namespace OnoStore.Cart.API.Controllers
         }
         private void ManipulateNewCart(CartItem item)
         {
-            var carrinho = new CustomerCart(_user.GetUserId());
-            carrinho.AddItem(item);
+            var cart = new CustomerCart(_user.GetUserId());
+            cart.AddItem(item);
 
-            ValidarCarrinho(carrinho);
-            _context.CustomerCart.Add(carrinho);
+            ValidateCart(cart);
+            _context.CustomerCart.Add(cart);
         }
-        private void ManipularCarrinhoExistente(CustomerCart carrinho, CartItem item)
+        private void ManipulateExistinCart(CustomerCart cart, CartItem item)
         {
-            var produtoItemExistente = carrinho.CartExistingItem(item);
+            var produtoItemExistente = cart.CartExistingItem(item);
 
-            carrinho.AddItem(item);
-            ValidarCarrinho(carrinho);
+            cart.AddItem(item);
+            ValidateCart(cart);
 
             if (produtoItemExistente)
             {
-                _context.CartItems.Update(carrinho.GetByProductId(item.ProductId));
+                _context.CartItems.Update(cart.GetByProductId(item.ProductId));
             }
             else
             {
                 _context.CartItems.Add(item);
             }
 
-            _context.CustomerCart.Update(carrinho);
+            _context.CustomerCart.Update(cart);
         }
-        private async Task<CartItem> ObterItemCarrinhoValidado(Guid ProductId, CustomerCart carrinho, CartItem item = null)
+        private async Task<CartItem> GetCartItemValidated(Guid ProductId, CustomerCart cart, CartItem item = null)
         {
             if (item != null && ProductId != item.ProductId)
             {
@@ -124,33 +124,33 @@ namespace OnoStore.Cart.API.Controllers
                 return null;
             }
 
-            if (carrinho == null)
+            if (cart == null)
             {
-                AddErrorProcessing("Carrinho não encontrado");
+                AddErrorProcessing("cart não encontrado");
                 return null;
             }
 
-            var itemCarrinho = await _context.CartItems
-                .FirstOrDefaultAsync(i => i.CartId == carrinho.Id && i.ProductId == ProductId);
+            var itemCart = await _context.CartItems
+                .FirstOrDefaultAsync(i => i.CartId == cart.Id && i.ProductId == ProductId);
 
-            if (itemCarrinho == null || !carrinho.CartExistingItem(itemCarrinho))
+            if (itemCart == null || !cart.CartExistingItem(itemCart))
             {
-                AddErrorProcessing("O item não está no carrinho");
+                AddErrorProcessing("O item não está no cart");
                 return null;
             }
 
-            return itemCarrinho;
+            return itemCart;
         }
-        private async Task PersistirDados()
+        private async Task PersistData()
         {
             var result = await _context.SaveChangesAsync();
             if (result <= 0) AddErrorProcessing("Não foi possível persistir os dados no banco");
         }
-        private bool ValidarCarrinho(CustomerCart carrinho)
+        private bool ValidateCart(CustomerCart cart)
         {
-            if (carrinho.IsValid()) return true;
+            if (cart.IsValid()) return true;
 
-            carrinho.ValidationResult.Errors.ToList().ForEach(e => AddErrorProcessing(e.ErrorMessage));
+            cart.ValidationResult.Errors.ToList().ForEach(e => AddErrorProcessing(e.ErrorMessage));
             return false;
         }
     }

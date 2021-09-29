@@ -9,6 +9,7 @@ using Polly.Extensions.Http;
 using Polly.Retry;
 using System;
 using System.Net.Http;
+using OnoStore.WebAPI.Core.User;
 
 namespace OnoStore.WebApp.MVC.Configuration
 {
@@ -34,7 +35,7 @@ namespace OnoStore.WebApp.MVC.Configuration
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
         }
 
         public class PollyExtensions
