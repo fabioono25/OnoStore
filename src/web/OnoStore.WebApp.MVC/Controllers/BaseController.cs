@@ -20,5 +20,15 @@ namespace OnoStore.WebApp.MVC.Controllers
 
             return false;
         }
+
+        protected void AddErrorValidation(string mensagem)
+        {
+            ModelState.AddModelError(string.Empty, mensagem);
+        }
+
+        protected bool IsValidOperation()
+        {
+            return ModelState.ErrorCount == 0;
+        }
     }
 }

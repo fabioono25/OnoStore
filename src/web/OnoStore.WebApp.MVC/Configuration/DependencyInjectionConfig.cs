@@ -18,13 +18,14 @@ namespace OnoStore.WebApp.MVC.Configuration
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddSingleton<IValidationAttributeAdapterProvider, CpfValidationAttributeAdapterProvider>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IAspNetUser, AspNetUser>();
+            
+            #region HttpServices
 
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>(); // not enough - we need to listen in some service
 
             services.AddHttpClient<IAutenticationService, AuthenticationService>(); // HTTP service 
-
-            services.AddHttpClient<ICatalogService, CatalogService>()
-                .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>(); // HTTP service 
 
             services.AddHttpClient<ICatalogService, CatalogService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
@@ -34,8 +35,19 @@ namespace OnoStore.WebApp.MVC.Configuration
                 .AddTransientHttpErrorPolicy(
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddScoped<IAspNetUser, AspNetUser>();
+            services.AddHttpClient<ICatalogService, CatalogService>()
+                .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
+                .AddPolicyHandler(PollyExtensions.WaitRetry())
+                .AddTransientHttpErrorPolicy(
+                    p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
+
+            services.AddHttpClient<ICartService, CartService>()
+                .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
+                .AddPolicyHandler(PollyExtensions.WaitRetry())
+                .AddTransientHttpErrorPolicy(
+                    p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
+
+            #endregion
         }
 
         public class PollyExtensions

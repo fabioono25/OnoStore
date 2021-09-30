@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using OnoStore.WebApp.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Services
 {
@@ -43,6 +44,11 @@ namespace OnoStore.WebApp.MVC.Services
 
             response.EnsureSuccessStatusCode();
             return true;
+        }
+
+        protected ResponseResult ReturnOk()
+        {
+            return new ResponseResult();
         }
     }
 }
