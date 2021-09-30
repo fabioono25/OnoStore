@@ -95,7 +95,7 @@ namespace OnoStore.Cart.API.Controllers
             var cart = new CustomerCart(_user.GetUserId());
             cart.AddItem(item);
 
-            ValidateCart(cart);
+            ValidateCart(cart); // must be after adding to the context - otherwise, null object error
             _context.CustomerCart.Add(cart);
         }
         private void ManipulateExistingCart(CustomerCart cart, CartItem item)

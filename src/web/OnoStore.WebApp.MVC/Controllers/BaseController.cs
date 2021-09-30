@@ -6,11 +6,11 @@ namespace OnoStore.WebApp.MVC.Controllers
 {
     public class BaseController : Controller
     {
-        protected bool ResponseHasErrors(ResponseResult resposta)
+        protected bool ResponseHasErrors(ResponseResult response)
         {
-            if (resposta != null && resposta.Errors.Messages.Any())
+            if (response != null && response.Errors.Messages.Any())
             {
-                foreach (var message in resposta.Errors.Messages)
+                foreach (var message in response.Errors.Messages)
                 {
                     ModelState.AddModelError(string.Empty, message);
                 }

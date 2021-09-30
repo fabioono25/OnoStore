@@ -20,7 +20,7 @@ namespace OnoStore.Cart.API.Model
 
         public Guid CartId { get; set; }
 
-        [JsonIgnore]
+        [JsonIgnore] // avoid object cycle during serialization
         public CustomerCart CustomerCart { get; set; }
 
         internal void AssociateCart(Guid cartId)

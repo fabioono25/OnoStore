@@ -40,7 +40,7 @@
                                                         </div>
                                                         <figcaption class="info">
                                                             <a asp-controller="Catalog" asp-action="ProductDetail" asp-route-id="@item.ProductId"><h6 style="padding-top: 10px" class="title text-dark">@item.Name</h6></a>
-                                                            <p class="text-muted small">@this.UnidadesPorProduto(item.Quantity)</p>
+                                                            <p class="text-muted small">@this.UnitsPerProduct(item.Quantity)</p>
                                                         </figcaption>
                                                     </figure>
                                                 </td>
@@ -58,7 +58,7 @@
                                                         <div class="text-left">
                                                             <select id="Quantidade" name="Quantidade" style="width: 80px" class="form-control">
                                                                 @{
-                                                                    @Html.Raw(this.SelectOptionsPorQuantidade(5, item.Quantity))
+                                                                    @Html.Raw(this.SelectOptionsPerQuantity(5, item.Quantity))
                                                                 }
                                                             </select>
                                                         </div>

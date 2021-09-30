@@ -21,26 +21,26 @@ namespace OnoStore.WebApp.MVC.Extensions
 
         public static string FormatCurrency(this RazorPage page, decimal valor)
         {
-            return valor > 0 ? string.Format(Thread.CurrentThread.CurrentCulture, "{0:C}", valor) : "Gratuito";
+            return valor > 0 ? string.Format(Thread.CurrentThread.CurrentCulture, "{0:C}", valor) : "Free";
         }
 
-        public static string MensagemEstoque(this RazorPage page, int quantidade)
+        public static string MessageStock(this RazorPage page, int quantidade)
         {
-            return quantidade > 0 ? $"Apenas {quantidade} em estoque!" : "Produto esgotado!";
+            return quantidade > 0 ? $"Just {quantidade} in stock!" : "Product out of stock!";
         }
 
-        public static string UnidadesPorProduto(this RazorPage page, int unidades)
+        public static string UnitsPerProduct(this RazorPage page, int units)
         {
-            return unidades > 1 ? $"{unidades} unidades" : $"{unidades} unidade";
+            return units > 1 ? $"{units} units" : $"{units} unit";
         }
 
-        public static string SelectOptionsPorQuantidade(this RazorPage page, int quantidade, int valorSelecionado = 0)
+        public static string SelectOptionsPerQuantity(this RazorPage page, int quantity, int selectedValue = 0)
         {
             var sb = new StringBuilder();
-            for (var i = 1; i <= quantidade; i++)
+            for (var i = 1; i <= quantity; i++)
             {
                 var selected = "";
-                if (i == valorSelecionado) selected = "selected";
+                if (i == selectedValue) selected = "selected";
                 sb.Append($"<option {selected} value='{i}'>{i}</option>");
             }
 
