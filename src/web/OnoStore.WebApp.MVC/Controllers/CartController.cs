@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using OnoStore.WebApp.MVC.Services;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnoStore.WebApp.MVC.Models;
+using OnoStore.WebApp.MVC.Services;
+using System;
+using System.Threading.Tasks;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {
-    public class CartController: BaseController
+    public class CartController : BaseController
     {
         private readonly ICartService _cartService;
         private readonly ICatalogService _catalogoService;

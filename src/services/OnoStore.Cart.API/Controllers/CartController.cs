@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using OnoStore.Cart.API.Data;
 using OnoStore.Cart.API.Model;
 using OnoStore.WebAPI.Core.Controllers;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using OnoStore.WebAPI.Core.User;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnoStore.Cart.API.Controllers
 {

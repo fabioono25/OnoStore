@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using OnoStore.WebApp.MVC.Models;
+using System;
 using System.Threading.Tasks;
-using OnoStore.WebApp.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Services
 {

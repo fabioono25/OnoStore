@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Models;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 

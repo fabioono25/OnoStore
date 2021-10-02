@@ -7,7 +7,6 @@ using OnoStore.Customer.API.Application.Events;
 using OnoStore.Customer.API.Data;
 using OnoStore.Customer.API.Data.Repository;
 using OnoStore.Customer.API.Models;
-using OnoStore.Customer.API.Services;
 
 namespace OnoStore.Customer.API.Configuration
 {
@@ -24,7 +23,7 @@ namespace OnoStore.Customer.API.Configuration
             services.AddScoped<CustomerContext>();
 
             // services.AddHostedService<RegisterCustomerIntegrationHandler>(); // Singleton - problems with scoped (MediatorHandler)
-            
+
         }
     }
 }

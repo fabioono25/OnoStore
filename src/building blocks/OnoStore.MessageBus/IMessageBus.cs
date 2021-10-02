@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using EasyNetQ;
+﻿using EasyNetQ;
 using OnoStore.Core.Messages.Integration;
+using System;
+using System.Threading.Tasks;
 
 namespace OnoStore.MessageBus
 {

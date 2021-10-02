@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using FluentValidation.Results;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnoStore.Core.Mediator;
 using OnoStore.Core.Messages.Integration;
 using OnoStore.Customer.API.Application.Commands;
 using OnoStore.MessageBus;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OnoStore.Customer.API.Services
 {
@@ -52,7 +51,7 @@ namespace OnoStore.Customer.API.Services
             using var scope = _serviceProvider.CreateScope();
             var mediator = scope.ServiceProvider.GetRequiredService<IMediatorHandler>();
             var success = await mediator.SendCommand(customerCommand);
-            
+
             return new ResponseMessage(success);
         }
     }

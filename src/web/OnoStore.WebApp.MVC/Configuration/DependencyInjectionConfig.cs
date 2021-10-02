@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.DependencyInjection;
+using OnoStore.WebAPI.Core.User;
 using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Services;
 using OnoStore.WebApp.MVC.Services.Handlers;
@@ -9,7 +10,6 @@ using Polly.Extensions.Http;
 using Polly.Retry;
 using System;
 using System.Net.Http;
-using OnoStore.WebAPI.Core.User;
 
 namespace OnoStore.WebApp.MVC.Configuration
 {
@@ -20,7 +20,7 @@ namespace OnoStore.WebApp.MVC.Configuration
             services.AddSingleton<IValidationAttributeAdapterProvider, CpfValidationAttributeAdapterProvider>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IAspNetUser, AspNetUser>();
-            
+
             #region HttpServices
 
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>(); // not enough - we need to listen in some service
