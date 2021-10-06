@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnoStore.WebApp.MVC.Models;
 using System.Linq;
+using OnoStore.Core.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {

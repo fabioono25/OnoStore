@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using OnoStore.Core.MVC.Models;
 
 namespace OnoStore.Bff.Purchase.Services
 {
@@ -33,5 +34,7 @@ namespace OnoStore.Bff.Purchase.Services
             response.EnsureSuccessStatusCode();
             return true;
         }
+
+        protected ResponseResult ReturnOk() => new ResponseResult();
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
 using System.Linq;
+using OnoStore.Core.MVC.Models;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace OnoStore.WebAPI.Core.Controllers
@@ -43,6 +44,25 @@ namespace OnoStore.WebAPI.Core.Controllers
             }
 
             return CustomResponse();
+        }
+
+        protected ActionResult CustomResponse(ResponseResult responseResult)
+        {
+            ResponseHasErrors(responseResult);
+
+            return CustomResponse();
+        }
+
+        protected bool ResponseHasErrors(ResponseResult response)
+        {
+            if (response == null || !response.Errors.Messages.Any()) return false;
+
+            foreach (var message in response.Errors.Messages)
+            {
+                AddErrorProcessing(message);
+            }
+
+            return true;
         }
 
         protected bool ValidOperation()

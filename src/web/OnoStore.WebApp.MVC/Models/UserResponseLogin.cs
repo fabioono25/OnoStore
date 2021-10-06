@@ -1,4 +1,6 @@
-﻿namespace OnoStore.WebApp.MVC.Models
+﻿using OnoStore.Core.MVC.Models;
+
+namespace OnoStore.WebApp.MVC.Models
 {
     public class UserResponseLogin
     {

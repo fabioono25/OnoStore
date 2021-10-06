@@ -50,7 +50,8 @@ namespace OnoStore.WebApp.MVC.Configuration
             #endregion
         }
 
-        public class PollyExtensions
+        // duplicated: however, they are different projects
+        public static class PollyExtensions
         {
             public static AsyncRetryPolicy<HttpResponseMessage> WaitRetry()
             {

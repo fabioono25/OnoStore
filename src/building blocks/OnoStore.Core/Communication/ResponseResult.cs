@@ -1,4 +1,4 @@
-namespace OnoStore.WebApp.MVC.Models
+namespace OnoStore.Core.MVC.Models
 {
     public class ResponseResult
     {
