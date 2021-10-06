@@ -1,9 +1,9 @@
-﻿using EasyNetQ;
+﻿using System;
+using System.Threading.Tasks;
+using EasyNetQ;
 using OnoStore.Core.Messages.Integration;
 using Polly;
 using RabbitMQ.Client.Exceptions;
-using System;
-using System.Threading.Tasks;
 
 namespace OnoStore.MessageBus
 {
@@ -68,7 +68,7 @@ namespace OnoStore.MessageBus
             return _bus.Rpc.Respond(responder);
         }
 
-        public async Task<IDisposable> RespondAsync<TRequest, TResponse>(Func<TRequest, Task<TResponse>> responder)
+        public async Task<System.IDisposable> RespondAsync<TRequest, TResponse>(Func<TRequest, Task<TResponse>> responder)
             where TRequest : IntegrationEvent where TResponse : ResponseMessage
         {
             TryConnect();
