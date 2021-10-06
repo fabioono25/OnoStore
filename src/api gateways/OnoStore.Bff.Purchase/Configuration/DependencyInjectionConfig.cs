@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using NSE.WebAPI.Core.Usuario;
+using OnoStore.WebAPI.Core.User;
 
-namespace NSE.Bff.Compras.Configuration.Configuration
+namespace OnoStore.Bff.Purchase.Configuration.Configuration
 {
     public static class DependencyInjectionConfig
     {

@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.Options;
-using NSE.Bff.Compras.Extensions;
+using OnoStore.Bff.Purchase.Extensions;
 
-namespace NSE.Bff.Compras.Services
+namespace OnoStore.Bff.Purchase.Services
 {
     public interface ICarrinhoService
     {
     }
 
-    public class CarrinhoService : Service, ICarrinhoService
+    public class CartService : Service, ICarrinhoService
     {
         private readonly HttpClient _httpClient;
 
-        public CarrinhoService(HttpClient httpClient, IOptions<AppServicesSettings> settings)
+        public CartService(HttpClient httpClient, IOptions<AppServicesSettings> settings)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(settings.Value.CarrinhoUrl);

@@ -4,11 +4,11 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace NSE.Bff.Compras.Services
+namespace OnoStore.Bff.Purchase.Services
 {
     public abstract class Service
     {
-        protected StringContent ObterConteudo(object dado)
+        protected StringContent GetContent(object dado)
         {
             return new StringContent(
                 JsonSerializer.Serialize(dado),
@@ -16,7 +16,7 @@ namespace NSE.Bff.Compras.Services
                 "application/json");
         }
 
-        protected async Task<T> DeserializarObjetoResponse<T>(HttpResponseMessage responseMessage)
+        protected async Task<T> DeserializeObjectResponse<T>(HttpResponseMessage responseMessage)
         {
             var options = new JsonSerializerOptions
             {
@@ -26,7 +26,7 @@ namespace NSE.Bff.Compras.Services
             return JsonSerializer.Deserialize<T>(await responseMessage.Content.ReadAsStringAsync(), options);
         }
 
-        protected bool TratarErrosResponse(HttpResponseMessage response)
+        protected bool TreatErrorsResponse(HttpResponseMessage response)
         {
             if (response.StatusCode == HttpStatusCode.BadRequest) return false;
 

@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Extensions.Options;
-using NSE.Bff.Compras.Extensions;
+using OnoStore.Bff.Purchase.Extensions;
 
-namespace NSE.Bff.Compras.Services
+namespace OnoStore.Bff.Purchase.Services
 {
     public interface ICatalogoService
     {
     }
 
-    public class CatalogoService : Service, ICatalogoService
+    public class CatalogService : Service, ICatalogoService
     {
         private readonly HttpClient _httpClient;
 
-        public CatalogoService(HttpClient httpClient, IOptions<AppServicesSettings> settings)
+        public CatalogService(HttpClient httpClient, IOptions<AppServicesSettings> settings)
         {
             _httpClient = httpClient;
             _httpClient.BaseAddress = new Uri(settings.Value.CatalogoUrl);

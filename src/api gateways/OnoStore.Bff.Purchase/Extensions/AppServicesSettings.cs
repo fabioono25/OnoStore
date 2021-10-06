@@ -1,4 +1,4 @@
-﻿namespace NSE.Bff.Compras.Extensions
+﻿namespace OnoStore.Bff.Purchase.Extensions
 {
     public class AppServicesSettings
     {

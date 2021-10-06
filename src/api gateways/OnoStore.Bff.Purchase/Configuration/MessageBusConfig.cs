@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace NSE.Bff.Compras.Configuration.Configuration
+namespace OnoStore.Bff.Purchase.Configuration.Configuration
 {
     public static class MessageBusConfig
     {

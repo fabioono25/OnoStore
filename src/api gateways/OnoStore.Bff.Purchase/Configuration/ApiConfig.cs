@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NSE.Bff.Compras.Extensions;
-using NSE.WebAPI.Core.Identidade;
+using OnoStore.Bff.Purchase.Extensions;
+using OnoStore.WebAPI.Core.Identity;
 
-namespace NSE.Bff.Compras.Configuration
+namespace OnoStore.Bff.Purchase.Configuration
 {
     public static class ApiConfig
     {

@@ -1,12 +1,12 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NSE.WebAPI.Core.Controllers;
+using OnoStore.WebAPI.Core.Controllers;
 
-namespace NSE.Bff.Compras.Controllers
+namespace OnoStore.Bff.Purchase.Controllers
 {
     [Authorize]
-    public class CarrinhoController : MainController
+    public class CartController : BaseController
     {
         [HttpGet]
         [Route("compras/carrinho")]
