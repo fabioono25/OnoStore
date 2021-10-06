@@ -66,5 +66,16 @@ namespace OnoStore.WebApp.MVC.Services
 
             return ReturnOk();
         }
+
+        public async Task<ResponseResult> AplicarVoucherCarrinho(string voucher)
+        {
+            var itemContent = ObtainContent(voucher);
+
+            var response = await _httpClient.PostAsync("/compras/carrinho/aplicar-voucher/", itemContent);
+
+            if (!TransformErrorsResponse(response)) return await DeserializeObjectResponse<ResponseResult>(response);
+
+            return ReturnOk();
+        }
     }
 }

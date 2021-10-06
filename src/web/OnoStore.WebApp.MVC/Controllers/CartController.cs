@@ -56,6 +56,17 @@ namespace OnoStore.WebApp.MVC.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [Route("carrinho/aplicar-voucher")]
+        public async Task<IActionResult> AplicarVoucher(string voucherCodigo)
+        {
+            var resposta = await _purchaseBffService.AplicarVoucherCarrinho(voucherCodigo);
+
+            if (ResponseHasErrors(resposta)) return View("Index", await _purchaseBffService.GetCart());
+
+            return RedirectToAction("Index");
+        }
+
         // validation should be in the backend
         //private void ValidateItemCart(ProductViewModel product, int quantity)
         //{

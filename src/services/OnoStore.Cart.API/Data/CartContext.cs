@@ -30,6 +30,24 @@ namespace OnoStore.Cart.API.Data
                 .HasDatabaseName("IDX_Customer");
 
             modelBuilder.Entity<CustomerCart>()
+                .Ignore(c => c.Voucher)
+                .OwnsOne(c => c.Voucher, v =>
+                {
+                    v.Property(vc => vc.Codigo)
+                        .HasColumnName("VoucherCodigo")
+                        .HasColumnType("varchar(50)");
+
+                    v.Property(vc => vc.TipoDesconto)
+                        .HasColumnName("TipoDesconto");
+
+                    v.Property(vc => vc.Percentual)
+                        .HasColumnName("Percentual");
+
+                    v.Property(vc => vc.ValorDesconto)
+                        .HasColumnName("ValorDesconto");
+                });
+            
+            modelBuilder.Entity<CustomerCart>()
                 .HasMany(c => c.Items)
                 .WithOne(i => i.CustomerCart)
                 .HasForeignKey(c => c.CartId);

@@ -64,6 +64,27 @@ namespace OnoStore.Cart.API.Controllers
             return CustomResponse();
         }
 
+        [HttpPost]
+        [Route("carrinho/aplicar-voucher")]
+        public async Task<IActionResult> AplicarVoucher(Voucher voucher)
+        {
+            var carrinho = await ObterCarrinhoCliente();
+
+            carrinho.AplicarVoucher(voucher);
+
+            _context.CustomerCart.Update(carrinho);
+
+            await PersistData();
+            return CustomResponse();
+        }
+
+        private async Task<CustomerCart> ObterCarrinhoCliente()
+        {
+            return await _context.CustomerCart
+                .Include(c => c.Items)
+                .FirstOrDefaultAsync(c => c.CustomerId == _user.GetUserId());
+        }
+
         [HttpDelete("cart/{productId}")]
         public async Task<IActionResult> RemoveCartItem(Guid ProductId)
         {

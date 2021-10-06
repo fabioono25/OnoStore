@@ -12,5 +12,6 @@ namespace OnoStore.WebApp.MVC.Services
         Task<ResponseResult> AddItemCart(CartProductItemViewModel cartProduct);
         Task<ResponseResult> UpdateItemCart(Guid produtoId, CartProductItemViewModel produto);
         Task<ResponseResult> RemoveItemCart(Guid produtoId);
+        Task<ResponseResult> AplicarVoucherCarrinho(string voucher);
     }
 }

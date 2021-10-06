@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using NSE.WebApp.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Models
 {
     public class CartViewModel
     {
         public decimal ValorTotal { get; set; }
+        public VoucherViewModel Voucher { get; set; }
+        public bool VoucherUtilizado { get; set; }
+        public decimal Desconto { get; set; }
         public List<CartProductItemViewModel> Items { get; set; } = new List<CartProductItemViewModel>();
     }
 

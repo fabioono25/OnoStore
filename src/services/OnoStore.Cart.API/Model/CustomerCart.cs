@@ -3,6 +3,7 @@ using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Permissions;
 
 namespace OnoStore.Cart.API.Model
 {
@@ -16,6 +17,10 @@ namespace OnoStore.Cart.API.Model
         public List<CartItem> Items { get; set; } = new List<CartItem>();
         public ValidationResult ValidationResult { get; set; }
 
+        public Voucher Voucher { get; set; }
+        public bool VoucherUtilizado { get; set; }
+        public decimal Desconto { get; set; }
+
         public CustomerCart(Guid customerId)
         {
             Id = Guid.NewGuid();
@@ -27,6 +32,47 @@ namespace OnoStore.Cart.API.Model
         internal void CalculateTotalValueCart()
         {
             TotalValue = Items.Sum(p => p.CalculateValue());
+        }
+
+        public void AplicarVoucher(Voucher voucher)
+        {
+            Voucher = voucher;
+            VoucherUtilizado = true;
+            CalcularValorCarrinho();
+        }
+
+        internal void CalcularValorCarrinho()
+        {
+            TotalValue = Items.Sum(p => p.CalculateValue());
+            CalcularValorTotalDesconto();
+        }
+
+        private void CalcularValorTotalDesconto()
+        {
+            if (!VoucherUtilizado) return;
+
+            decimal desconto = 0;
+            var valor = TotalValue;
+
+            if (Voucher.TipoDesconto == TipoDescontoVoucher.Porcentagem)
+            {
+                if (Voucher.Percentual.HasValue)
+                {
+                    desconto = (valor * Voucher.Percentual.Value) / 100;
+                    valor -= desconto;
+                }
+            }
+            else
+            {
+                if (Voucher.ValorDesconto.HasValue)
+                {
+                    desconto = Voucher.ValorDesconto.Value;
+                    valor -= desconto;
+                }
+            }
+
+            TotalValue = valor < 0 ? 0 : valor;
+            Desconto = desconto;
         }
 
         internal bool CartExistingItem(CartItem item)
