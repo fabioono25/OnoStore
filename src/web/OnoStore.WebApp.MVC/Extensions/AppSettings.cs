@@ -4,6 +4,6 @@
     {
         public string AuthenticationUrl { get; set; }
         public string CatalogUrl { get; set; }
-        public string CartUrl { get; set; }
+        public string PurchaseBffUrl { get; set; }
     }
 }

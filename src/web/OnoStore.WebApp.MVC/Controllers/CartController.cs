@@ -8,38 +8,26 @@ namespace OnoStore.WebApp.MVC.Controllers
 {
     public class CartController : BaseController
     {
-        private readonly ICartService _cartService;
-        private readonly ICatalogService _catalogoService;
+        private readonly IPurchaseBffService _purchaseBffService;
 
-        public CartController(ICartService cartService,
-            ICatalogService catalogoService)
+        public CartController(IPurchaseBffService purchaseBffService)
         {
-            _cartService = cartService;
-            _catalogoService = catalogoService;
+            _purchaseBffService = purchaseBffService;
         }
 
         [Route("cart")]
         public async Task<IActionResult> Index()
         {
-            return View(await _cartService.GetCart());
+            return View(await _purchaseBffService.GetCart());
         }
 
         [HttpPost]
         [Route("cart/add-item")]
-        public async Task<IActionResult> AddItemCart(ProductItemViewModel itemProduct)
+        public async Task<IActionResult> AddItemCart(CartProductItemViewModel itemCartProduct)
         {
-            var product = await _catalogoService.GetById(itemProduct.ProductId); // avoid external manipulation
+            var response = await _purchaseBffService.AddItemCart(itemCartProduct); // avoid external manipulation
 
-            ValidateItemCart(product, itemProduct.Quantity);
-            if (!IsValidOperation()) return View("Index", await _cartService.GetCart());
-
-            itemProduct.Name = product.Name;
-            itemProduct.Value = product.Value;
-            itemProduct.Image = product.Image;
-
-            var response = await _cartService.AddItemCart(itemProduct);
-
-            if (ResponseHasErrors(response)) return View("Index", await _cartService.GetCart());
+            if (ResponseHasErrors(response)) return View("Index", await _purchaseBffService.GetCart());
 
             return RedirectToAction("Index");
         }
@@ -48,15 +36,11 @@ namespace OnoStore.WebApp.MVC.Controllers
         [Route("cart/update-item")]
         public async Task<IActionResult> UpdateItemCart(Guid productId, int quantity)
         {
-            var product = await _catalogoService.GetById(productId);
+            var item = new CartProductItemViewModel { ProductId = productId, Quantity = quantity };
 
-            ValidateItemCart(product, quantity);
-            if (!IsValidOperation()) return View("Index", await _cartService.GetCart());
-
-            var productItem = new ProductItemViewModel { ProductId = productId, Quantity = quantity };
-            var response = await _cartService.UpdateItemCart(productId, productItem);
-
-            if (ResponseHasErrors(response)) return View("Index", await _cartService.GetCart());
+            var response = await _purchaseBffService.UpdateItemCart(productId, item); // avoid external manipulation
+            
+            if (ResponseHasErrors(response)) return View("Index", await _purchaseBffService.GetCart());
 
             return RedirectToAction("Index");
         }
@@ -65,26 +49,19 @@ namespace OnoStore.WebApp.MVC.Controllers
         [Route("cart/delete-item")]
         public async Task<IActionResult> RemoveItemCart(Guid produtoId)
         {
-            var product = await _catalogoService.GetById(produtoId);
-
-            if (product == null)
-            {
-                AddErrorValidation("Produto inexistente!");
-                return View("Index", await _cartService.GetCart());
-            }
-
-            var response = await _cartService.RemoveItemCart(produtoId);
-
-            if (ResponseHasErrors(response)) return View("Index", await _cartService.GetCart());
+            var response = await _purchaseBffService.RemoveItemCart(produtoId);
+            
+            if (ResponseHasErrors(response)) return View("Index", await _purchaseBffService.GetCart());
 
             return RedirectToAction("Index");
         }
 
-        private void ValidateItemCart(ProductViewModel product, int quantity)
-        {
-            if (product == null) AddErrorValidation("Product not found!");
-            if (quantity < 1) AddErrorValidation($"Choose at least one unit of product {product.Name}");
-            if (quantity > product.QuantityInventory) AddErrorValidation($"Product {product.Name} has {product.QuantityInventory} units in stock, you selected {quantity}");
-        }
+        // validation should be in the backend
+        //private void ValidateItemCart(ProductViewModel product, int quantity)
+        //{
+        //    if (product == null) AddErrorValidation("Product not found!");
+        //    if (quantity < 1) AddErrorValidation($"Choose at least one unit of cartProduct {product.Name}");
+        //    if (quantity > product.QuantityInventory) AddErrorValidation($"Product {product.Name} has {product.QuantityInventory} units in stock, you selected {quantity}");
+        //}
     }
 }

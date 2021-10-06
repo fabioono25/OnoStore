@@ -41,7 +41,7 @@ namespace OnoStore.WebApp.MVC.Configuration
                 .AddTransientHttpErrorPolicy(
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
-            services.AddHttpClient<ICartService, CartService>()
+            services.AddHttpClient<IPurchaseBffService, PurchaseBffService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
                 .AddPolicyHandler(PollyExtensions.WaitRetry())
                 .AddTransientHttpErrorPolicy(

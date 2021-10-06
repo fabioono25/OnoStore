@@ -7,16 +7,17 @@ namespace OnoStore.WebApp.MVC.Extensions
 {
     public class CartViewComponent : ViewComponent
     {
-        private readonly ICartService _cartService;
+        private readonly IPurchaseBffService _purchaseBffService;
 
-        public CartViewComponent(ICartService cartService)
+        public CartViewComponent(IPurchaseBffService purchaseBffService)
         {
-            _cartService = cartService;
+            _purchaseBffService = purchaseBffService;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(await _cartService.GetCart() ?? new CartViewModel());
+            //return View(await _purchaseBffService.GetCart() ?? new CartViewModel());
+            return View(await _purchaseBffService.GetQuantityCart());
         }
     }
 }

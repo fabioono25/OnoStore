@@ -5,11 +5,12 @@ using OnoStore.Core.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Services
 {
-    public interface ICartService
+    public interface IPurchaseBffService
     {
         Task<CartViewModel> GetCart();
-        Task<ResponseResult> AddItemCart(ProductItemViewModel product);
-        Task<ResponseResult> UpdateItemCart(Guid produtoId, ProductItemViewModel produto);
+        Task<int> GetQuantityCart();
+        Task<ResponseResult> AddItemCart(CartProductItemViewModel cartProduct);
+        Task<ResponseResult> UpdateItemCart(Guid produtoId, CartProductItemViewModel produto);
         Task<ResponseResult> RemoveItemCart(Guid produtoId);
     }
 }
