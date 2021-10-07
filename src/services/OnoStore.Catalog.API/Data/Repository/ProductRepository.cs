@@ -3,6 +3,7 @@ using OnoStore.Catalog.API.Models;
 using OnoStore.Core.Data;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace OnoStore.Catalog.API.Data.Repository
@@ -26,6 +27,19 @@ namespace OnoStore.Catalog.API.Data.Repository
         public async Task<Product> GetById(Guid id)
         {
             return await _context.Products.FindAsync(id);
+        }
+
+        public async Task<List<Product>> GetProductById(string ids)
+        {
+            var idsGuid = ids.Split(',')
+                .Select(id => (Ok: Guid.TryParse(id, out var x), Value: x));
+
+            if (!idsGuid.All(nid => nid.Ok)) return new List<Product>();
+
+            var idsValue = idsGuid.Select(id => id.Value);
+
+            return await _context.Products.AsNoTracking()
+                .Where(p => idsValue.Contains(p.Id) && p.Active).ToListAsync();
         }
 
         public void Add(Product product)

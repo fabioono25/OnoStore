@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using OnoStore.Core.Data;
 using OnoStore.Customer.API.Models;
 using System.Collections.Generic;
@@ -30,6 +31,16 @@ namespace OnoStore.Customer.API.Data.Repository
         public void Add(Models.Customer customer)
         {
             _context.Customers.Add(customer);
+        }
+
+        public async Task<Address> ObterEnderecoPorId(Guid id)
+        {
+            return await _context.Addresses.FirstOrDefaultAsync(e => e.CustomerId == id);
+        }
+
+        public void AdicionarEndereco(Address endereco)
+        {
+            _context.Addresses.Add(endereco);
         }
 
         public void Dispose()

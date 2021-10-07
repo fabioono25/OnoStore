@@ -16,6 +16,7 @@ namespace OnoStore.Customer.API.Configuration
         {
             services.AddScoped<IMediatorHandler, MediatorHandler>();
             services.AddScoped<IRequestHandler<RegisterCustomerCommand, ValidationResult>, CustomerCommandHandler>();
+            services.AddScoped<IRequestHandler<AdicionarEnderecoCommand, ValidationResult>, CustomerCommandHandler>();
 
             services.AddScoped<INotificationHandler<RegisteredCustomerEvent>, CustomerEventHandler>();
 

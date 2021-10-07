@@ -33,5 +33,11 @@ namespace OnoStore.Catalog.API.Controllers
         {
             return await _productRepository.GetById(id);
         }
+
+        [HttpGet("catalogo/produtos/lista/{ids}")]
+        public async Task<IEnumerable<Product>> GetProductsById(string ids)
+        {
+            return await _productRepository.GetProductById(ids);
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace OnoStore.Catalog.API.Models
     {
         Task<IEnumerable<Product>> GetAll();
         Task<Product> GetById(Guid id);
+        Task<List<Product>> GetProductById(string ids);
 
         void Add(Product product);
         void Update(Product product);

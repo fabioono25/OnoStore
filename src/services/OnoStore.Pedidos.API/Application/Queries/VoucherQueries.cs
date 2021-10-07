@@ -7,7 +7,7 @@ namespace NSE.Pedidos.API.Application.Queries
     public interface IVoucherQueries
     {
         Task<VoucherDTO> GetVoucherByCode(string code);
-    }x
+    }
 
     public class VoucherQueries : IVoucherQueries
     {

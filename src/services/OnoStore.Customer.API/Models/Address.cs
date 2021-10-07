@@ -21,15 +21,16 @@ namespace OnoStore.Customer.API.Models
         {
         }
 
-        public Address(string street, string number, string complement, string neighbor, string cep, string city, string state)
+        public Address(string logradouro, string numero, string complemento, string bairro, string cep, string cidade, string estado, Guid clienteId)
         {
-            Street = street;
-            Number = number;
-            Complement = complement;
-            Neighbor = neighbor;
+            Street = logradouro;
+            Number = numero;
+            Complement = numero;
+            Neighbor = bairro;
             ZipCode = cep;
-            City = city;
-            State = state;
+            City = cidade;
+            State = estado;
+            CustomerId = clienteId;
         }
     }
 }

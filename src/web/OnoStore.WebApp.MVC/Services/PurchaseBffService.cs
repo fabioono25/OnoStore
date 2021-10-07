@@ -2,6 +2,7 @@
 using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Models;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using OnoStore.Core.MVC.Models;
@@ -76,6 +77,63 @@ namespace OnoStore.WebApp.MVC.Services
             if (!TransformErrorsResponse(response)) return await DeserializeObjectResponse<ResponseResult>(response);
 
             return ReturnOk();
+        }
+
+        public PedidoTransacaoViewModel MapearParaPedido(CartViewModel carrinho, EnderecoViewModel endereco)
+        {
+            var pedido = new PedidoTransacaoViewModel
+            {
+                ValorTotal = carrinho.ValorTotal,
+                Itens = carrinho.Items,
+                Desconto = carrinho.Desconto,
+                VoucherUtilizado = carrinho.VoucherUtilizado,
+                VoucherCodigo = carrinho.Voucher?.Codigo
+            };
+
+            if (endereco != null)
+            {
+                pedido.Endereco = new EnderecoViewModel
+                {
+                    Logradouro = endereco.Logradouro,
+                    Numero = endereco.Numero,
+                    Bairro = endereco.Bairro,
+                    Cep = endereco.Cep,
+                    Complemento = endereco.Complemento,
+                    Cidade = endereco.Cidade,
+                    Estado = endereco.Estado
+                };
+            }
+
+            return pedido;
+        }
+
+        public async Task<ResponseResult> FinalizarPedido(PedidoTransacaoViewModel pedidoTransacao)
+        {
+            var pedidoContent = ObtainContent(pedidoTransacao);
+
+            var response = await _httpClient.PostAsync("/compras/pedido/", pedidoContent);
+
+            if (!TransformErrorsResponse(response)) return await DeserializeObjectResponse<ResponseResult>(response);
+
+            return ReturnOk();
+        }
+
+        public async Task<PedidoViewModel> ObterUltimoPedido()
+        {
+            var response = await _httpClient.GetAsync("/compras/pedido/ultimo/");
+
+            TransformErrorsResponse(response);
+
+            return await DeserializeObjectResponse<PedidoViewModel>(response);
+        }
+
+        public async Task<IEnumerable<PedidoViewModel>> ObterListaPorClienteId()
+        {
+            var response = await _httpClient.GetAsync("/compras/pedido/lista-cliente/");
+
+            TransformErrorsResponse(response);
+
+            return await DeserializeObjectResponse<IEnumerable<PedidoViewModel>>(response);
         }
     }
 }
