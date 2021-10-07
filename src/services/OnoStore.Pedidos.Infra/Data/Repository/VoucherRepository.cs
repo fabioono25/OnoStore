@@ -16,7 +16,7 @@ namespace NSE.Pedidos.Infra.Data.Repository
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public async Task<Voucher> ObterVoucherPorCodigo(string codigo)
+        public async Task<Voucher> GetVoucherByCode(string codigo)
         {
             return await _context.Vouchers.FirstOrDefaultAsync(p => p.Codigo == codigo);
         }

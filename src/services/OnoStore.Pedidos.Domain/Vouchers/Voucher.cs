@@ -17,7 +17,7 @@ namespace NSE.Pedidos.Domain
         public bool Ativo { get; private set; }
         public bool Utilizado { get; private set; }
 
-        public bool EstaValidoParaUtilizacao()
+        public bool IsValid()
         {
             return new VoucherAtivoSpecification()
                 .And(new VoucherDataSpecification())

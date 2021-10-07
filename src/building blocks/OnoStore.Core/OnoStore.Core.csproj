@@ -9,4 +9,8 @@
 		<PackageReference Include="mediatr" Version="9.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="5.0.10" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Specification\" />
+	</ItemGroup>
 </Project>

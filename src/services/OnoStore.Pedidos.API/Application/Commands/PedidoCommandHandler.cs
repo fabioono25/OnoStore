@@ -79,7 +79,7 @@ namespace NSE.Pedidos.API.Application.Commands
         {
             if (!message.VoucherUtilizado) return true;
 
-            var voucher = await _voucherRepository.ObterVoucherPorCodigo(message.VoucherCodigo);
+            var voucher = await _voucherRepository.GetVoucherByCode(message.VoucherCodigo);
             if (voucher == null)
             {
                 AddError("O voucher informado não existe!");

@@ -6,8 +6,8 @@ namespace NSE.Pedidos.API.Application.Queries
 {
     public interface IVoucherQueries
     {
-        Task<VoucherDTO> ObterVoucherPorCodigo(string codigo);
-    }
+        Task<VoucherDTO> GetVoucherByCode(string code);
+    }x
 
     public class VoucherQueries : IVoucherQueries
     {
@@ -18,14 +18,15 @@ namespace NSE.Pedidos.API.Application.Queries
             _voucherRepository = voucherRepository;
         }
 
-        public async Task<VoucherDTO> ObterVoucherPorCodigo(string codigo)
+        public async Task<VoucherDTO> GetVoucherByCode(string code)
         {
-            var voucher = await _voucherRepository.ObterVoucherPorCodigo(codigo);
+            var voucher = await _voucherRepository.GetVoucherByCode(code);
 
             if (voucher == null) return null;
 
-            if (!voucher.EstaValidoParaUtilizacao()) return null;
+            if (!voucher.IsValid()) return null;
 
+            // a simple map from model to DTO - don't add all the properties, just the necessary
             return new VoucherDTO
             {
                 Codigo = voucher.Codigo,

@@ -25,7 +25,7 @@ namespace NSE.Pedidos.API.Controllers
         {
             if (string.IsNullOrEmpty(codigo)) return NotFound();
 
-            var voucher = await _voucherQueries.ObterVoucherPorCodigo(codigo);
+            var voucher = await _voucherQueries.GetVoucherByCode(codigo);
 
             return voucher == null ? NotFound() : CustomResponse(voucher);
         }
