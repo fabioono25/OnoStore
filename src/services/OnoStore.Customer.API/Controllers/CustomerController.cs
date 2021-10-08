@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnoStore.Core.Mediator;
 using OnoStore.Customer.API.Application.Commands;
+using OnoStore.Customer.API.Models;
 using OnoStore.WebAPI.Core.Controllers;
+using OnoStore.WebAPI.Core.User;
 using System;
 using System.Threading.Tasks;
-using OnoStore.Customer.API.Models;
-using OnoStore.WebAPI.Core.User;
 
 namespace OnoStore.Customer.API.Controllers
 {

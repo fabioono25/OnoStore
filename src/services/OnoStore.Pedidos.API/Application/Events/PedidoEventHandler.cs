@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using NSE.Core.Messages.Integration;
 using OnoStore.MessageBus;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.API.Application.Events
 {

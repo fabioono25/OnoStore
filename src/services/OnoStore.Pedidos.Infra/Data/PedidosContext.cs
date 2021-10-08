@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using Microsoft.EntityFrameworkCore;
 using NSE.Pedidos.Domain;
 using NSE.Pedidos.Domain.Pedidos;
@@ -9,6 +6,9 @@ using OnoStore.Core.Data;
 using OnoStore.Core.DomainObjects;
 using OnoStore.Core.Mediator;
 using OnoStore.Core.Messages;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.Infra.Data
 {
@@ -85,7 +85,8 @@ namespace NSE.Pedidos.Infra.Data
                 .ForEach(entity => entity.Entity.CleanEvents());
 
             var tasks = domainEvents
-                .Select(async (domainEvent) => {
+                .Select(async (domainEvent) =>
+                {
                     await mediator.PublishEvent(domainEvent);
                 });
 

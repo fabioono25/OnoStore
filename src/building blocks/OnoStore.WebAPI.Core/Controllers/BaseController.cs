@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using OnoStore.Core.MVC.Models;
 using System.Collections.Generic;
 using System.Linq;
-using OnoStore.Core.MVC.Models;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace OnoStore.WebAPI.Core.Controllers

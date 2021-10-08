@@ -8,7 +8,7 @@ namespace OnoStore.Bff.Purchase.Configuration.Configuration
         public static void AddMessageBusConfiguration(this IServiceCollection services,
             IConfiguration configuration)
         {
-            
+
         }
     }
 }

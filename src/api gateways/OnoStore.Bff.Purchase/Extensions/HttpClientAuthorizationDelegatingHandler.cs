@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using OnoStore.WebAPI.Core.User;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
 using System.Threading.Tasks;
-using OnoStore.WebAPI.Core.User;
 
 namespace OnoStore.Bff.Purchase.Extensions
 {

@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OnoStore.Core.Data;
 using OnoStore.Customer.API.Models;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -1,10 +1,9 @@
-﻿using OnoStore.WebApp.MVC.Extensions;
-using OnoStore.WebApp.MVC.Models;
+﻿using OnoStore.Core.MVC.Models;
+using OnoStore.WebApp.MVC.Extensions;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using OnoStore.Core.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Services
 {

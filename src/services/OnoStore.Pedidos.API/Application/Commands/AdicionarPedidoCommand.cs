@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using FluentValidation;
+﻿using FluentValidation;
 using NSE.Pedidos.API.Application.DTO;
 using OnoStore.Core.Messages;
+using System;
+using System.Collections.Generic;
 
 namespace NSE.Pedidos.API.Application.Commands
 {

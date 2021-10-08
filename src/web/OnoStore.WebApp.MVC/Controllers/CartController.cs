@@ -39,7 +39,7 @@ namespace OnoStore.WebApp.MVC.Controllers
             var item = new CartProductItemViewModel { ProductId = productId, Quantity = quantity };
 
             var response = await _purchaseBffService.UpdateItemCart(productId, item); // avoid external manipulation
-            
+
             if (ResponseHasErrors(response)) return View("Index", await _purchaseBffService.GetCart());
 
             return RedirectToAction("Index");
@@ -50,7 +50,7 @@ namespace OnoStore.WebApp.MVC.Controllers
         public async Task<IActionResult> RemoveItemCart(Guid produtoId)
         {
             var response = await _purchaseBffService.RemoveItemCart(produtoId);
-            
+
             if (ResponseHasErrors(response)) return View("Index", await _purchaseBffService.GetCart());
 
             return RedirectToAction("Index");

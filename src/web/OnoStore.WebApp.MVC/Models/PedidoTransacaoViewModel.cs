@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using OnoStore.Core.Validation;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using OnoStore.Core.Validation;
 
 namespace OnoStore.WebApp.MVC.Models
 {

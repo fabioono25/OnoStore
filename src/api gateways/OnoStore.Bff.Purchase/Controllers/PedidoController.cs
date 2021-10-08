@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.Bff.Purchase.Models;
 using OnoStore.Bff.Purchase.Services;
 using OnoStore.WebAPI.Core.Controllers;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnoStore.Bff.Compras.Controllers
 {
@@ -120,7 +120,7 @@ namespace OnoStore.Bff.Compras.Controllers
 
             return true;
         }
-        
+
         private void PopularDadosPedido(CartDto carrinho, EnderecoDTO endereco, PedidoDTO pedido)
         {
             pedido.VoucherCodigo = carrinho.Voucher?.Codigo;

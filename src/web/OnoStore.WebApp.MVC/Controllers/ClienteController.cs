@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.WebApp.MVC.Models;
 using OnoStore.WebApp.MVC.Services;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {
@@ -22,7 +22,7 @@ namespace OnoStore.WebApp.MVC.Controllers
         {
             var response = await _clienteService.AdicionarEndereco(endereco);
 
-            if (ResponseHasErrors(response)) TempData["Erros"] = 
+            if (ResponseHasErrors(response)) TempData["Erros"] =
                 ModelState.Values.SelectMany(v => v.Errors.Select(e => e.ErrorMessage)).ToList();
 
             return RedirectToAction("EnderecoEntrega", "Pedido");

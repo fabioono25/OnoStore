@@ -1,6 +1,6 @@
-﻿using System;
+﻿using NSE.WebApp.MVC.Models;
+using System;
 using System.Collections.Generic;
-using NSE.WebApp.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Models
 {

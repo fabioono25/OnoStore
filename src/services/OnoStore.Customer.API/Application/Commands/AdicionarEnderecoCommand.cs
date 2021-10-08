@@ -1,7 +1,6 @@
-﻿using System;
-using FluentValidation;
-using NSE.Core.Messages;
+﻿using FluentValidation;
 using OnoStore.Core.Messages;
+using System;
 
 namespace OnoStore.Customer.API.Application.Commands
 {

@@ -1,7 +1,7 @@
-﻿using System;
-using System.Net.Http;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using OnoStore.Bff.Purchase.Extensions;
+using System;
+using System.Net.Http;
 
 namespace OnoStore.Bff.Purchase.Services
 {

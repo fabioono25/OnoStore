@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Microsoft.Extensions.Options;
+using OnoStore.Bff.Purchase.Extensions;
+using OnoStore.Bff.Purchase.Models;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microsoft.Extensions.Options;
-using OnoStore.Bff.Purchase.Extensions;
-using OnoStore.Bff.Purchase.Models;
 
 namespace OnoStore.Bff.Purchase.Services
 {

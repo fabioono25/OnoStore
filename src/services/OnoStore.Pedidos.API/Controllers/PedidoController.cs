@@ -1,11 +1,11 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NSE.Pedidos.API.Application.Commands;
 using NSE.Pedidos.API.Application.Queries;
 using OnoStore.Core.Mediator;
 using OnoStore.WebAPI.Core.Controllers;
 using OnoStore.WebAPI.Core.User;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.API.Controllers
 {

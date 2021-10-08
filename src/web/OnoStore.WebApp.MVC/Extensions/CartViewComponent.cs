@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using OnoStore.WebApp.MVC.Models;
 using OnoStore.WebApp.MVC.Services;
 using System.Threading.Tasks;
 

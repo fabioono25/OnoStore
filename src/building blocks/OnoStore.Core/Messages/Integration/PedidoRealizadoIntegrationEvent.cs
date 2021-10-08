@@ -1,5 +1,5 @@
-﻿using System;
-using OnoStore.Core.Messages.Integration;
+﻿using OnoStore.Core.Messages.Integration;
+using System;
 
 namespace NSE.Core.Messages.Integration
 {

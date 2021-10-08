@@ -1,6 +1,6 @@
-﻿using System;
-using NSE.Pedidos.Domain.Specs;
+﻿using NSE.Pedidos.Domain.Specs;
 using OnoStore.Core.DomainObjects;
+using System;
 
 namespace NSE.Pedidos.Domain
 {

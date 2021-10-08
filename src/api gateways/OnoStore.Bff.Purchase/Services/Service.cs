@@ -1,9 +1,9 @@
-﻿using System.Net;
+﻿using OnoStore.Core.MVC.Models;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using OnoStore.Core.MVC.Models;
 
 namespace OnoStore.Bff.Purchase.Services
 {

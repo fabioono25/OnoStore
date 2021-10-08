@@ -1,8 +1,8 @@
-﻿using System;
+﻿using OnoStore.Core.Data;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Threading.Tasks;
-using OnoStore.Core.Data;
 
 namespace NSE.Pedidos.Domain.Pedidos
 {

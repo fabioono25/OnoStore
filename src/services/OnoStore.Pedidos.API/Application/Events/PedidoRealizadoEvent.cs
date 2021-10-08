@@ -1,5 +1,5 @@
-﻿using System;
-using OnoStore.Core.Messages;
+﻿using OnoStore.Core.Messages;
+using System;
 
 namespace NSE.Pedidos.API.Application.Events
 {

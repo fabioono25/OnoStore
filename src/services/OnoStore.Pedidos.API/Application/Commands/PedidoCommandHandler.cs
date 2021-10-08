@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using FluentValidation.Results;
+﻿using FluentValidation.Results;
 using MediatR;
 using NSE.Pedidos.API.Application.DTO;
 using NSE.Pedidos.API.Application.Events;
@@ -9,6 +6,9 @@ using NSE.Pedidos.Domain;
 using NSE.Pedidos.Domain.Pedidos;
 using NSE.Pedidos.Domain.Specs;
 using OnoStore.Core.Messages;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.API.Application.Commands
 {
@@ -18,7 +18,7 @@ namespace NSE.Pedidos.API.Application.Commands
         private readonly IPedidoRepository _pedidoRepository;
         private readonly IVoucherRepository _voucherRepository;
 
-        public PedidoCommandHandler(IVoucherRepository voucherRepository, 
+        public PedidoCommandHandler(IVoucherRepository voucherRepository,
                                     IPedidoRepository pedidoRepository)
         {
             _voucherRepository = voucherRepository;

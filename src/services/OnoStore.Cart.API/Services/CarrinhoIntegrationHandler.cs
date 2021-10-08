@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSE.Core.Messages.Integration;
 using OnoStore.Cart.API.Data;
 using OnoStore.MessageBus;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OnoStore.Cart.API.Services
 {

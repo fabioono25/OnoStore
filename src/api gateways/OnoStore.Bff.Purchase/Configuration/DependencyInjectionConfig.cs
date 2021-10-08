@@ -1,11 +1,11 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using OnoStore.Bff.Purchase.Extensions;
 using OnoStore.Bff.Purchase.Services;
 using OnoStore.WebAPI.Core.Extensions;
 using OnoStore.WebAPI.Core.User;
 using Polly;
+using System;
 
 namespace OnoStore.Bff.Purchase.Configuration.Configuration
 {

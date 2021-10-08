@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using NSE.Pedidos.Domain.Pedidos;
+using OnoStore.Core.Data;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using NSE.Pedidos.Domain.Pedidos;
-using OnoStore.Core.Data;
 
 namespace NSE.Pedidos.Infra.Data.Repository
 {

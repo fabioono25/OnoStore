@@ -46,7 +46,7 @@ namespace OnoStore.Cart.API.Data
                     v.Property(vc => vc.ValorDesconto)
                         .HasColumnName("ValorDesconto");
                 });
-            
+
             modelBuilder.Entity<CustomerCart>()
                 .HasMany(c => c.Items)
                 .WithOne(i => i.CustomerCart)

@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using OnoStore.Core.Data;
+﻿using OnoStore.Core.Data;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.Domain
 {

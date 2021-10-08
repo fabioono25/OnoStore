@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnoStore.Bff.Purchase.Models;
 using OnoStore.Bff.Purchase.Services;
 using OnoStore.WebAPI.Core.Controllers;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace OnoStore.Bff.Purchase.Controllers
 {

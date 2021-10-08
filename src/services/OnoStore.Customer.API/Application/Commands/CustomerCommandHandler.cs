@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnoStore.Customer.API.Application.Commands
 {
-    public class CustomerCommandHandler : CommandHandler, 
+    public class CustomerCommandHandler : CommandHandler,
         IRequestHandler<RegisterCustomerCommand, ValidationResult>,
         IRequestHandler<AdicionarEnderecoCommand, ValidationResult>
     {
