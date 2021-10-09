@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using NSE.Pedidos.API.Services;
+using NSE.Catalogo.API.Services;
 using OnoStore.Core.Utils;
 using OnoStore.MessageBus;
 
-namespace NSE.Pedidos.API.Configuration
+namespace NSE.Catalogo.API.Configuration
 {
     public static class MessageBusConfig
     {
@@ -12,7 +12,7 @@ namespace NSE.Pedidos.API.Configuration
             IConfiguration configuration)
         {
             services.AddMessageBus(configuration.GetMessageQueueConnection("MessageBus"))
-                .AddHostedService<PedidoOrquestradorIntegrationHandler>();
+                .AddHostedService<CatalogoIntegrationHandler>();
         }
     }
 }

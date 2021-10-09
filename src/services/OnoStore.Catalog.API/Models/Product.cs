@@ -13,5 +13,16 @@ namespace OnoStore.Catalog.API.Models
         public DateTime DataInsert { get; set; }
         public string Image { get; set; }
         public int QuantityInventory { get; set; }
+
+        public void RetirarEstoque(int quantidade)
+        {
+            if (QuantityInventory >= quantidade)
+                QuantityInventory -= quantidade;
+        }
+
+        public bool EstaDisponivel(int quantidade)
+        {
+            return Active && QuantityInventory >= quantidade;
+        }
     }
 }

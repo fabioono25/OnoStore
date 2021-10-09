@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NSE.Catalogo.API.Configuration;
 using OnoStore.Catalog.API.Configuration;
 using OnoStore.Identity.API.Configuration;
 using OnoStore.WebAPI.Core.Identity;
@@ -33,6 +34,8 @@ namespace OnoStore.Catalog.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApiConfiguration(Configuration);
+
+            services.AddMessageBusConfiguration(Configuration);
 
             services.AddJwtConfiguration(Configuration);
 
