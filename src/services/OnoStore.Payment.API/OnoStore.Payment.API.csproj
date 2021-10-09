@@ -16,4 +16,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\NSE.Pagamentos.NerdsPag\NSE.Pagamentos.NerdsPag.csproj" />
+  </ItemGroup>
+
 </Project>
