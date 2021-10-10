@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OnoStore.Core.DomainObjects;
+using System;
 using System.Collections.Generic;
-using OnoStore.Core.DomainObjects;
 
 namespace NSE.Pagamentos.API.Models
 {

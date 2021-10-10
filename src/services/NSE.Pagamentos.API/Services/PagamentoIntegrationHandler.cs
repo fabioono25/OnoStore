@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSE.Core.Messages.Integration;
 using NSE.Pagamentos.API.Models;
 using OnoStore.Core.DomainObjects;
 using OnoStore.Core.Messages.Integration;
 using OnoStore.MessageBus;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NSE.Pagamentos.API.Services
 {

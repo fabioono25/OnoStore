@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSE.Core.Messages.Integration;
 using OnoStore.Catalog.API.Models;
 using OnoStore.Core.DomainObjects;
 using OnoStore.MessageBus;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NSE.Catalogo.API.Services
 {
@@ -53,7 +53,7 @@ namespace NSE.Catalogo.API.Services
                 foreach (var produto in produtos)
                 {
                     var quantidadeProduto = message.Itens.FirstOrDefault(p => p.Key == produto.Id).Value;
-                    
+
                     if (produto.EstaDisponivel(quantidadeProduto))
                     {
                         produto.RetirarEstoque(quantidadeProduto);

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NSE.Core.Messages.Integration;
 using NSE.Pedidos.Domain.Pedidos;
 using OnoStore.Core.DomainObjects;
 using OnoStore.MessageBus;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace NSE.Pedidos.API.Services
 {

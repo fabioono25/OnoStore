@@ -1,6 +1,6 @@
-﻿using System;
+﻿using OnoStore.Core.Messages.Integration;
+using System;
 using System.Collections.Generic;
-using OnoStore.Core.Messages.Integration;
 
 namespace NSE.Core.Messages.Integration
 {

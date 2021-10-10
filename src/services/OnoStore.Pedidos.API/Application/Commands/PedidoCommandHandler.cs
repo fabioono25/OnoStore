@@ -1,17 +1,17 @@
 ﻿using FluentValidation.Results;
 using MediatR;
+using NSE.Core.Messages.Integration;
 using NSE.Pedidos.API.Application.DTO;
 using NSE.Pedidos.API.Application.Events;
 using NSE.Pedidos.Domain;
 using NSE.Pedidos.Domain.Pedidos;
 using NSE.Pedidos.Domain.Specs;
 using OnoStore.Core.Messages;
+using OnoStore.Core.Messages.Integration;
+using OnoStore.MessageBus;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using NSE.Core.Messages.Integration;
-using OnoStore.Core.Messages.Integration;
-using OnoStore.MessageBus;
 
 namespace NSE.Pedidos.API.Application.Commands
 {
