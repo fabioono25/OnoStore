@@ -22,9 +22,9 @@ namespace OnoStore.Catalog.API.Controllers
 
         [AllowAnonymous]
         [HttpGet("catalog/products")]
-        public async Task<IEnumerable<Product>> Index()
+        public async Task<PagedResult<Product>> Index([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
         {
-            return await _productRepository.GetAll();
+            return await _productRepository.GetAll(ps, page, q);
         }
 
         [ClaimsAuthorize("Catalog", "Read")]

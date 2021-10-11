@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dapper;
 
 namespace OnoStore.Catalog.API.Data.Repository
 {
@@ -19,9 +20,33 @@ namespace OnoStore.Catalog.API.Data.Repository
 
         public IUnitOfWork UnitOfWork => _context;
 
-        public async Task<IEnumerable<Product>> GetAll()
+        public async Task<PagedResult<Product>> GetAll(int pageSize, int pageIndex, string query = null)
         {
-            return await _context.Products.AsNoTracking().ToListAsync();
+            //return await _context.Products.AsNoTracking().ToListAsync();
+
+            // using Dapper: using EF we should implement Skip(pageSize * pageIndex - 1).Take(20).Where(c => c.Name.Contains(query)).ToListAsync()
+            var sql = @$"SELECT * FROM Produtos 
+                      WHERE (@Nome IS NULL OR Nome LIKE '%' + @Nome + '%') 
+                      ORDER BY [Nome] 
+                      OFFSET {pageSize * (pageIndex - 1)} ROWS 
+                      FETCH NEXT {pageSize} ROWS ONLY 
+                      SELECT COUNT(Id) FROM Produtos 
+                      WHERE (@Nome IS NULL OR Nome LIKE '%' + @Nome + '%')";
+
+            var multi = await _context.Database.GetDbConnection()
+                .QueryMultipleAsync(sql, new { Nome = query });
+
+            var produtos = multi.Read<Product>();
+            var total = multi.Read<int>().FirstOrDefault();
+
+            return new PagedResult<Product>()
+            {
+                List = produtos,
+                TotalResults = total,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+                Query = query
+            };
         }
 
         public async Task<Product> GetById(Guid id)

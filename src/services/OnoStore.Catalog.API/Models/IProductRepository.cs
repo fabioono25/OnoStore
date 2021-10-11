@@ -7,7 +7,7 @@ namespace OnoStore.Catalog.API.Models
 {
     public interface IProductRepository : IRepository<Product>
     {
-        Task<IEnumerable<Product>> GetAll();
+        Task<PagedResult<Product>> GetAll(int pageSize, int pageIndex, string query = null);
         Task<Product> GetById(Guid id);
         Task<List<Product>> GetProductById(string ids);
 
