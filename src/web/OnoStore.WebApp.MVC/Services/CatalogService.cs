@@ -21,13 +21,13 @@ namespace OnoStore.WebApp.MVC.Services
             //  _settings = settings.Value;
         }
 
-        public async Task<IEnumerable<ProductViewModel>> GetAll()
+        public async Task<PagedViewModel<ProductViewModel>> GetAll(int pageSize, int pageIndex, string query = null)
         {
-            var response = await _httpClient.GetAsync("/catalog/products");
+            var response = await _httpClient.GetAsync($"/catalog/products?ps={pageSize}&page={pageIndex}&q={query}");
 
             TransformErrorsResponse(response);
 
-            return await DeserializeObjectResponse<IEnumerable<ProductViewModel>>(response);
+            return await DeserializeObjectResponse<PagedViewModel<ProductViewModel>>(response);
         }
 
         public async Task<ProductViewModel> GetById(Guid id)

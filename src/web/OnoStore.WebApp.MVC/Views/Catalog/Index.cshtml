@@ -1,5 +1,6 @@
 ﻿@using OnoStore.WebApp.MVC.Extensions
-@model IEnumerable<OnoStore.WebApp.MVC.Models.ProductViewModel>
+@*@model IEnumerable<OnoStore.WebApp.MVC.Models.ProductViewModel>*@
+@model PagedViewModel<ProductViewModel>
 
 @{
     ViewData["Title"] = "Todos os produtos";
@@ -12,34 +13,37 @@
                 <img src="~/images/banners/nerdstore.png" />
             </div>
         </div>
-        <div class="container" style=" padding-top: 20px">
+        <div class="container" style="padding-top: 20px">
             <div class="row">
                 @{
-                    foreach (var product in Model.OrderBy(p=>p.Name))
+                    foreach (var produto in Model.List.Where(p => p.Active).OrderBy(p => p.Name))
                     {
                         <div class="col-md-3">
                             <div href="#" class="card card-product-grid">
-                                <a asp-controller="Catalog" asp-action="ProductDetail" asp-route-id="@product.Id" class="img-wrap">
-                                    <img src="~/images/produtos/@product.Image" alt="@product.Name">
+                                <a asp-controller="Catalog" asp-action="ProductDetail" asp-route-id="@produto.Id" class="img-wrap">
+                                    <img src="~/images/produtos/@produto.Image" alt="@produto.Name">
                                 </a>
                                 <figcaption class="info-wrap">
-                                    <a asp-controller="Catalog" asp-action="ProductDetail" asp-route-id="@product.Id" class="title">
-                                        <b> @product.Name</b>
+                                    <a asp-controller="Catalog" asp-action="ProductDetail" asp-route-id="@produto.Id" class="title">
+                                        <b> @produto.Name</b>
                                     </a>
 
                                     <small class="card-text">
-                                        @this.MessageStock(product.QuantityInventory)<br/><br/>
-                                        @product.Description
+                                        @this.MessageStock(produto.QuantityInventory)<br /><br />
+                                        @produto.Description
                                     </small>
                                 </figcaption>
                                 <div class="card-footer price mt-1">
-                                    <h3>@this.FormatCurrency(product.Value)</h3>
+                                    <h3>@this.FormatCurrency(produto.Value)</h3>
                                 </div>
                             </div>
                         </div>
                     }
                 }
             </div>
+
+            <vc:paginacao modelo-paginado="@Model"></vc:paginacao>
+
         </div>
     </div>
 </section>

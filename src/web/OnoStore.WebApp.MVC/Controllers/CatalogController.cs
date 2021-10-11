@@ -17,9 +17,11 @@ namespace OnoStore.WebApp.MVC.Controllers
         [HttpGet]
         [Route("")]
         [Route("showcase")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] int ps = 8, [FromQuery] int page = 1, [FromQuery] string q = null)
         {
-            var products = await _catalogService.GetAll();
+            var products = await _catalogService.GetAll(ps, page, q);
+            ViewBag.Pesquisa = q; // persist info
+            products.ReferenceAction = "Index";
 
             return View(products);
         }

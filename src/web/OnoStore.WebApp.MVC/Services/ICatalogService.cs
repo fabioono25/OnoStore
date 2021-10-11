@@ -7,7 +7,9 @@ namespace OnoStore.WebApp.MVC.Services
 {
     public interface ICatalogService
     {
-        Task<IEnumerable<ProductViewModel>> GetAll();
+        //Task<IEnumerable<ProductViewModel>> GetAll();
+        Task<PagedViewModel<ProductViewModel>> GetAll(int pageSize, int pageIndex, string query = null);
+
         Task<ProductViewModel> GetById(Guid id);
     }
 }
