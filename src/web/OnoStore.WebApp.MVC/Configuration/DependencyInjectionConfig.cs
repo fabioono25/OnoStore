@@ -25,7 +25,7 @@ namespace OnoStore.WebApp.MVC.Configuration
 
             services.AddTransient<HttpClientAuthorizationDelegatingHandler>(); // not enough - we need to listen in some service
 
-            services.AddHttpClient<IAutenticationService, AuthenticationService>(); // HTTP service 
+            services.AddHttpClient<IAuthenticationService, AuthenticationService>(); // HTTP service 
 
             services.AddHttpClient<ICatalogService, CatalogService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()

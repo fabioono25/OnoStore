@@ -11,6 +11,7 @@ namespace OnoStore.WebAPI.Core.User
         Guid GetUserId();
         string GetUserEmail();
         string GetUserToken();
+        string ObterUserRefreshToken();
         bool IsAuthenticated();
         bool HasRole(string role);
         IEnumerable<Claim> GetClaims();

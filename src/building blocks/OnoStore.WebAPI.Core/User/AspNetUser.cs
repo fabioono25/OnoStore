@@ -13,7 +13,10 @@ namespace OnoStore.WebAPI.Core.User
         {
             _accessor = accessor;
         }
-
+        public string ObterUserRefreshToken()
+        {
+            return IsAuthenticated() ? _accessor.HttpContext.User.GetUserRefreshToken() : "";
+        }
         public string Name => _accessor.HttpContext.User.Identity.Name;
 
         public Guid GetUserId()
