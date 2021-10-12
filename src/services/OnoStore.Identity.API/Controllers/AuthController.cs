@@ -170,7 +170,8 @@ namespace OnoStore.Identity.API.Controllers
             return new UserResponseLogin
             {
                 AccessToken = encodedToken,
-                ExpiresIn = TimeSpan.FromHours(_appSettings.ExpirationHours).TotalSeconds,
+                //ExpiresIn = TimeSpan.FromHours(_appSettings.ExpirationHours).TotalSeconds,
+                ExpiresIn = TimeSpan.FromHours(1).TotalSeconds,
                 UsuarioToken = new UserToken
                 {
                     Id = user.Id,

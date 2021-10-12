@@ -28,7 +28,7 @@ namespace OnoStore.Identity.API.Configuration
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddJwtConfiguration(configuration);
+            // services.AddJwtConfiguration(configuration); - not necessary anymore
 
             return services;
         }

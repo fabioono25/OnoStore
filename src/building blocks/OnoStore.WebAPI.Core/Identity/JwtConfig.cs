@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using NetDevPack.Security.JwtExtensions;
 
 namespace OnoStore.WebAPI.Core.Identity
 {
@@ -16,7 +17,7 @@ namespace OnoStore.WebAPI.Core.Identity
             services.Configure<AppSettings>(appSettingsSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
-            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+            // var key = Encoding.ASCII.GetBytes(appSettings.Secret);
 
             services.AddAuthentication(x =>
             {
@@ -26,15 +27,16 @@ namespace OnoStore.WebAPI.Core.Identity
             {
                 x.RequireHttpsMetadata = true;
                 x.SaveToken = true;
-                x.TokenValidationParameters = new TokenValidationParameters
-                {
-                    ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(key),
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidAudience = appSettings.ValidIn,
-                    ValidIssuer = appSettings.Emitter
-                };
+                //x.TokenValidationParameters = new TokenValidationParameters
+                //{
+                //    ValidateIssuerSigningKey = true,
+                //    IssuerSigningKey = new SymmetricSecurityKey(key),
+                //    ValidateIssuer = true,
+                //    ValidateAudience = true,
+                //    ValidAudience = appSettings.ValidIn,
+                //    ValidIssuer = appSettings.Emitter
+                //};
+                x.SetJwksOptions(new JwkOptions(appSettings.AuthenticationJwksUrl));
             });
         }
 
