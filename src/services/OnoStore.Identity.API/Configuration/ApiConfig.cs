@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NetDevPack.Security.Jwt.AspNetCore;
+using OnoStore.Identity.API.Services;
 using OnoStore.WebAPI.Core.Identity;
 using OnoStore.WebAPI.Core.User;
 
@@ -14,6 +15,7 @@ namespace OnoStore.Identity.API.Configuration
         {
             services.AddControllers();
 
+            services.AddScoped<AuthenticationService>();
             services.AddScoped<IAspNetUser, AspNetUser>();
 
             return services;

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NetDevPack.Security.Jwt.Model;
 using NetDevPack.Security.Jwt.Store.EntityFrameworkCore;
+using NSE.Identidade.API.Models;
 
 namespace OnoStore.Identity.API.Data
 {
@@ -10,5 +11,7 @@ namespace OnoStore.Identity.API.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<SecurityKeyWithPrivate> SecurityKeys { get; set; } // generate a new migrations - as a good practice in a new DB (as a matter of security)
+
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }

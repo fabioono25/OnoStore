@@ -15,6 +15,8 @@ namespace OnoStore.Identity.API.Configuration
         public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services,
             IConfiguration configuration)
         {
+            var appSettingsSection = configuration.GetSection("AppTokenSettings");
+            services.Configure<AppTokenSettings>(appSettingsSection);
 
             services.AddJwksManager(options => options.Jws = JwsAlgorithm.ES256)
                 .PersistKeysToDatabaseStore<ApplicationDbContext>();
