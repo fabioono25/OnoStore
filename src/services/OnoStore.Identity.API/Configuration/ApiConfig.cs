@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NetDevPack.Security.Jwt.AspNetCore;
 using OnoStore.WebAPI.Core.Identity;
+using OnoStore.WebAPI.Core.User;
 
 namespace OnoStore.Identity.API.Configuration
 {
@@ -11,6 +13,8 @@ namespace OnoStore.Identity.API.Configuration
         public static IServiceCollection AddApiConfiguration(this IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddScoped<IAspNetUser, AspNetUser>();
 
             return services;
         }
@@ -32,6 +36,8 @@ namespace OnoStore.Identity.API.Configuration
             {
                 endpoints.MapControllers();
             });
+
+            app.UseJwksDiscovery("/my-key-endpoint"); // expose the endpoint for the public key - localhost/jwks
 
             return app;
         }

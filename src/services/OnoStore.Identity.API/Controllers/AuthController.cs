@@ -14,6 +14,8 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using NetDevPack.Security.Jwt.Interfaces;
+using OnoStore.WebAPI.Core.User;
 
 namespace OnoStore.Identity.API.Controllers
 {
@@ -24,14 +26,18 @@ namespace OnoStore.Identity.API.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
+        private readonly IAspNetUser _aspNetUser;
+        private readonly IJsonWebKeySetService _jwksService;
         private IMessageBus _bus;
-
-        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IMessageBus bus)
+        
+        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IMessageBus bus, IAspNetUser aspNetUser, IJsonWebKeySetService jwksService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
             _bus = bus;
+            _aspNetUser = aspNetUser;
+            _jwksService = jwksService;
         }
 
         [HttpPost("register")]
@@ -130,16 +136,31 @@ namespace OnoStore.Identity.API.Controllers
 
         private string CodifyToken(ClaimsIdentity identityClaims)
         {
+            //var tokenHandler = new JwtSecurityTokenHandler();
+            //var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            //var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
+            //{
+            //    Issuer = _appSettings.Emitter,
+            //    Audience = _appSettings.ValidIn,
+            //    Subject = identityClaims,
+            //    Expires = DateTime.UtcNow.AddHours(_appSettings.ExpirationHours),
+            //    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            //});
+
             var tokenHandler = new JwtSecurityTokenHandler();
-            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+
+            var currentIssuer =
+                $"{_aspNetUser.GetHttpContext().Request.Scheme}://{_aspNetUser.GetHttpContext().Request.Host}";
+
+            var key = _jwksService.GetCurrentSigningCredentials();
             var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
             {
-                Issuer = _appSettings.Emitter,
-                Audience = _appSettings.ValidIn,
+                Issuer = currentIssuer, // coming from the authentication API 
                 Subject = identityClaims,
-                Expires = DateTime.UtcNow.AddHours(_appSettings.ExpirationHours),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                Expires = DateTime.UtcNow.AddHours(1),
+                SigningCredentials = key
             });
+
 
             return tokenHandler.WriteToken(token);
         }

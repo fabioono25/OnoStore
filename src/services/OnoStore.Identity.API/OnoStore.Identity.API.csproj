@@ -20,6 +20,8 @@
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Abstractions" Version="5.0.10" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.10" />
 	  <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
+	  <PackageReference Include="NetDevPack.Security.Jwt.AspNetCore" Version="5.0.17" />
+	  <PackageReference Include="NetDevPack.Security.Jwt.Store.EntityFrameworkCore" Version="5.0.17" />
 	  <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
   </ItemGroup>
 
