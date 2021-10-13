@@ -1,22 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using OnoStore.Core.Messages.Integration;
 using OnoStore.Identity.API.Models.UserViewModels;
+using OnoStore.Identity.API.Services;
 using OnoStore.MessageBus;
 using OnoStore.WebAPI.Core.Controllers;
-using OnoStore.WebAPI.Core.Identity;
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading.Tasks;
-using NetDevPack.Security.Jwt.Interfaces;
-using OnoStore.WebAPI.Core.User;
-using OnoStore.Identity.API.Services;
 
 namespace OnoStore.Identity.API.Controllers
 {

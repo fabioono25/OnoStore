@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace OnoStore.Catalog.API.Models
 {
-    public class PagedResult<T> where T: class
+    public class PagedResult<T> where T : class
     {
         public IEnumerable<T> List { get; set; }
         public int TotalResults { get; set; }

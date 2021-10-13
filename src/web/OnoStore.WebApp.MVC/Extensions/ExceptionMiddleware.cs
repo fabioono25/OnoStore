@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using OnoStore.WebApp.MVC.Services;
 using Polly.CircuitBreaker;
 using System.Net;
 using System.Threading.Tasks;
-using OnoStore.WebApp.MVC.Services;
 
 namespace OnoStore.WebApp.MVC.Extensions
 {

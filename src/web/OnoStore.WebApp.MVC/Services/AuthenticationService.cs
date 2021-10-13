@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Options;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.Options;
 using OnoStore.Core.MVC.Models;
+using OnoStore.WebAPI.Core.User;
 using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Models;
 using System;
@@ -8,9 +11,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using OnoStore.WebAPI.Core.User;
 
 namespace OnoStore.WebApp.MVC.Services
 {

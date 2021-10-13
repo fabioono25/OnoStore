@@ -6,7 +6,6 @@ using NetDevPack.Security.Jwt;
 using NetDevPack.Security.Jwt.Store.EntityFrameworkCore;
 using NSE.Identidade.API.Extensions;
 using OnoStore.Identity.API.Data;
-using OnoStore.WebAPI.Core.Identity;
 
 namespace OnoStore.Identity.API.Configuration
 {

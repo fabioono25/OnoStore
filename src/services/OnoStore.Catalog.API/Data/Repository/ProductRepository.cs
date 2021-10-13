@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Dapper;
+using Microsoft.EntityFrameworkCore;
 using OnoStore.Catalog.API.Models;
 using OnoStore.Core.Data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Dapper;
 
 namespace OnoStore.Catalog.API.Data.Repository
 {

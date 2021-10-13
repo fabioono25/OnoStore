@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using NetDevPack.Security.JwtExtensions;
 
 namespace OnoStore.WebAPI.Core.Identity

@@ -1,13 +1,7 @@
-﻿
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using OnoStore.WebApp.MVC.Models;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Threading.Tasks;
 using OnoStore.WebApp.MVC.Services;
+using System.Threading.Tasks;
 
 namespace OnoStore.WebApp.MVC.Controllers
 {

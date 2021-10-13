@@ -2,7 +2,6 @@
 using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Models;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 

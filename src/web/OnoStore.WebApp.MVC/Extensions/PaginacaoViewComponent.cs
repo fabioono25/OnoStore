@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NSE.WebApp.MVC.Models;
 using OnoStore.WebApp.MVC.Models;
 
 namespace OnoStore.WebApp.MVC.Extensions
