@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "OnoStore.Cart.API.Services.gRPC";
+
+package CartAPI;
+
+service CartOrders {
+	rpc GetCart(GetCartRequest) returns (CartCustomerResponse) {}
+}
+
+message GetCartRequest {
+
+}
+
+message CartCustomerResponse {
+	string id = 1;
+	string customerid = 2;
+	double totalvalue = 3;
+
+	// items
+	repeated CartItemResponse itens = 4;
+
+	bool voucherutilizado = 5;
+	double desconto = 6;
+
+	// voucher
+	VoucherResponse voucher = 7;
+}
+
+message CartItemResponse {
+	string id = 1;
+	string productid = 2;
+	string name = 3;
+	int32 quantity = 4;
+	double value = 5;
+	string image = 6;
+}
+
+message VoucherResponse {
+	double percentual = 1;
+	double valordesconto = 2;
+	string codigo = 3;
+	int32 tipodesconto = 4;
+}
