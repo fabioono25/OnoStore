@@ -6,6 +6,7 @@ using OnoStore.WebAPI.Core.Controllers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using NSE.Bff.Compras.Services.gRPC;
 
 namespace OnoStore.Bff.Purchase.Controllers
 {
@@ -15,29 +16,32 @@ namespace OnoStore.Bff.Purchase.Controllers
         private readonly ICartService _carrinhoService;
         private readonly ICatalogService _catalogoService;
         private readonly IPedidoService _pedidoService;
+        private readonly ICarrinhoGrpcService _carrinhoGrpcService;
 
         public CartController(
             ICartService carrinhoService,
             ICatalogService catalogoService,
-            IPedidoService pedidoService)
+            IPedidoService pedidoService, 
+            ICarrinhoGrpcService carrinhoGrpcService)
         {
             _carrinhoService = carrinhoService;
             _catalogoService = catalogoService;
             _pedidoService = pedidoService;
+            _carrinhoGrpcService = carrinhoGrpcService;
         }
 
         [HttpGet]
         [Route("compras/carrinho")]
         public async Task<IActionResult> Index()
         {
-            return CustomResponse(await _carrinhoService.ObterCarrinho());
+            return CustomResponse(await _carrinhoGrpcService.ObterCarrinho());
         }
 
         [HttpGet]
         [Route("compras/carrinho-quantidade")]
         public async Task<int> ObterQuantidadeCarrinho()
         {
-            var quantidade = await _carrinhoService.ObterCarrinho();
+            var quantidade = await _carrinhoGrpcService.ObterCarrinho();
             return quantidade?.Itens.Sum(i => i.Quantity) ?? 0;
         }
 

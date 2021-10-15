@@ -11,5 +11,8 @@ namespace OnoStore.Bff.Purchase.Models
         public bool VoucherUtilizado { get; set; }
         public decimal Desconto { get; set; }
         public List<ProductItemCartDto> Items { get; set; } = new List<ProductItemCartDto>();
+        public decimal? Percentual { get; set; }
+        public decimal? ValorDesconto { get; set; }
+        public int TipoDesconto { get; set; }
     }
 }
