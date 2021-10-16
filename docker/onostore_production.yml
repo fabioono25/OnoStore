@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbit-onostore
+    environment:
+      RABBITMQ_DEFAULT_USER: "onostore"
+      RABBITMQ_DEFAULT_PASS: "onostore"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+  web-mvc:
+    image: mylifeindev/onostore-web-mvc-ecommerce:latest
+    container_name: onostore-web-mvc-ecommerce
+    build:
+      context: ../src
+      dockerfile: ./web/OnoStore.WebApp.MVC/Dockerfile
+    ports:
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://*:5001
+    depends_on:
+      - api-catalog
+
+  api-catalog:
+    image: mylifeindev/onostore-api-catalog:latest
+    container_name: onostore-api-catalog
+    build:
+      context: ../src
+      dockerfile: ./web/OnoStore.Catalog.API/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://*:5301
+    depends_on:
+      - rabbitmq
+
+#docker-compose -f onostore_production.yml up
