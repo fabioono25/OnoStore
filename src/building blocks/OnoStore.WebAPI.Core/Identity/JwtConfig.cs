@@ -23,7 +23,7 @@ namespace OnoStore.WebAPI.Core.Identity
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(x =>
             {
-                x.RequireHttpsMetadata = true;
+                x.RequireHttpsMetadata = true; // can be false to ignore schema HTTPS
                 x.SaveToken = true;
                 //x.TokenValidationParameters = new TokenValidationParameters
                 //{

@@ -12,6 +12,18 @@ services:
       - "5672:5672"
       - "15672:15672"
 
+    db: # this DB is populated previously
+        image: desenvolvedorio/onostore-sql-server:latest
+        container_name: onostore-sql-server
+        build:
+            context: ../sql
+            dockerfile: ./Dockerfile
+        ports:  
+            - "1433:1433"
+        environment:
+            SA_PASSWORD: "MeuDB@123"
+            ACCEPT_EULA: "Y"
+
   web-mvc:
     image: mylifeindev/onostore-web-mvc-ecommerce:latest
     container_name: onostore-web-mvc-ecommerce
@@ -38,4 +50,5 @@ services:
     depends_on:
       - rabbitmq
 
+#docker-compose -f onostore_production.yml up --build (force build for all)
 #docker-compose -f onostore_production.yml up
