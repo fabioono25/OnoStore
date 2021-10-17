@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System.Net.Http;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,7 @@ namespace OnoStore.WebAPI.Core.Identity
             {
                 x.RequireHttpsMetadata = true; // can be false to ignore schema HTTPS
                 x.SaveToken = true;
+                x.BackchannelHttpHandler = new HttpClientHandler { ServerCertificateCustomValidationCallback = delegate { return true; } }; // bypass of the certificate
                 //x.TokenValidationParameters = new TokenValidationParameters
                 //{
                 //    ValidateIssuerSigningKey = true,

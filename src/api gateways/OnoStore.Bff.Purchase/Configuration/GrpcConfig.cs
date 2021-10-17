@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NSE.Bff.Compras.Services.gRPC;
+using NSE.WebAPI.Core.Extensions;
 using OnoStore.Cart.API.Services.gRPC;
 
 namespace NSE.Bff.Compras.Configuration
@@ -17,7 +18,8 @@ namespace NSE.Bff.Compras.Configuration
             services.AddGrpcClient<CartOrders.CartOrdersClient>(options =>
             {
                 options.Address = new Uri(configuration["CarrinhoUrl"]);
-            }).AddInterceptor<GrpcServiceInterceptor>();
+            }).AddInterceptor<GrpcServiceInterceptor>()
+                .AllowSelfSignedCertificate();
         }
     }
 }

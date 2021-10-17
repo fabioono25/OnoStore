@@ -10,6 +10,7 @@ using Polly.Extensions.Http;
 using Polly.Retry;
 using System;
 using System.Net.Http;
+using NSE.WebAPI.Core.Extensions;
 
 namespace OnoStore.WebApp.MVC.Configuration
 {
@@ -29,6 +30,15 @@ namespace OnoStore.WebApp.MVC.Configuration
 
             services.AddHttpClient<ICatalogService, CatalogService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
+                .AllowSelfSignedCertificate()
+                //.ConfigureHttpMessageHandlerBuilder(b =>
+                //{
+                //    b.PrimaryHandler = new HttpClientHandler
+                //    {
+                //        ServerCertificateCustomValidationCallback =
+                //            HttpClientHandler.DangerousAcceptAnyServerCertificateValidator // allow self-signed certificates
+                //    };
+                //})
                 //.AddTransientHttpErrorPolicy(
                 //p => p.WaitAndRetryAsync(3, _ => TimeSpan.FromMilliseconds(600)));
                 .AddPolicyHandler(PollyExtensions.WaitRetry()) // customized policy
@@ -38,18 +48,21 @@ namespace OnoStore.WebApp.MVC.Configuration
             services.AddHttpClient<ICatalogService, CatalogService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
                 .AddPolicyHandler(PollyExtensions.WaitRetry())
+                .AllowSelfSignedCertificate()
                 .AddTransientHttpErrorPolicy(
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
             services.AddHttpClient<IPurchaseBffService, PurchaseBffService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
                 .AddPolicyHandler(PollyExtensions.WaitRetry())
+                .AllowSelfSignedCertificate()
                 .AddTransientHttpErrorPolicy(
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
             services.AddHttpClient<IClienteService, ClienteService>()
                 .AddHttpMessageHandler<HttpClientAuthorizationDelegatingHandler>()
                 .AddPolicyHandler(PollyExtensions.WaitRetry())
+                .AllowSelfSignedCertificate()
                 .AddTransientHttpErrorPolicy(
                     p => p.CircuitBreakerAsync(5, TimeSpan.FromSeconds(30)));
 
