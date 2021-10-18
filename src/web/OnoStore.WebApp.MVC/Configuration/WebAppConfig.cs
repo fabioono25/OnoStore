@@ -16,9 +16,11 @@ namespace OnoStore.WebApp.MVC.Configuration
         {
             services.AddControllersWithViews();
 
+            // if you need to scale into multiple clusters and avoid loosing the authentication key
+            // different keys generated per container
             services.AddDataProtection()
                 .PersistKeysToFileSystem(new System.IO.DirectoryInfo(@"/var/data_protection_keys/"))
-                .SetApplicationName("NerdStoreEnterprise");
+                .SetApplicationName("OnoStore");
 
             services.Configure<ForwardedHeadersOptions>(options =>
             {

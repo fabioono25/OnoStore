@@ -26,7 +26,7 @@ services:
 
   web-mvc:
     image: mylifeindev/onostore-web-mvc-ecommerce:latest
-    container_name: onostore-web-mvc-ecommerce
+    container_name: onostore-web-mvc-ecommerce # you should comment this line to run the command with multiple instances --scale web-mvc=4
     build:
       context: ../src
       dockerfile: ./web/OnoStore.WebApp.MVC/Dockerfile
@@ -36,6 +36,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=http://*:5001
+    volumes: 
+      - dpkeys:/var/data_protection_keys/
     depends_on:
       - api-catalog
 
@@ -197,6 +199,10 @@ services:
             - "443:443"
         depends_on:
             - web-mvc
+
+# shared volume created here
+volumes:
+    dpkeys:
 
 #docker-compose -f onostore_production.yml up --build (force build for all)
 #docker-compose -f onostore_production.yml up
