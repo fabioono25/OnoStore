@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NSE.Bff.Compras.Services.gRPC;
 using OnoStore.Bff.Purchase.Models;
 using OnoStore.Bff.Purchase.Services;
 using OnoStore.WebAPI.Core.Controllers;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using NSE.Bff.Compras.Services.gRPC;
 
 namespace OnoStore.Bff.Purchase.Controllers
 {
@@ -21,7 +21,7 @@ namespace OnoStore.Bff.Purchase.Controllers
         public CartController(
             ICartService carrinhoService,
             ICatalogService catalogoService,
-            IPedidoService pedidoService, 
+            IPedidoService pedidoService,
             ICarrinhoGrpcService carrinhoGrpcService)
         {
             _carrinhoService = carrinhoService;

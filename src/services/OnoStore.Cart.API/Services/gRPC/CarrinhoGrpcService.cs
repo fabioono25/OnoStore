@@ -1,13 +1,12 @@
-﻿using System.Threading.Tasks;
-using Grpc.Core;
+﻿using Grpc.Core;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OnoStore.Cart.API.Data;
 using OnoStore.Cart.API.Model;
 using OnoStore.Cart.API.Services.gRPC;
 using OnoStore.WebAPI.Core.User;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace NSE.Carrinho.API.Services.gRPC
 {

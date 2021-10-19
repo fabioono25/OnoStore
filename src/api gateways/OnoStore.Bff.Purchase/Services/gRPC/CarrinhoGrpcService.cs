@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using OnoStore.Bff.Purchase.Models;
+﻿using OnoStore.Bff.Purchase.Models;
 using OnoStore.Cart.API.Services.gRPC;
+using System;
+using System.Threading.Tasks;
 
 namespace NSE.Bff.Compras.Services.gRPC
 {

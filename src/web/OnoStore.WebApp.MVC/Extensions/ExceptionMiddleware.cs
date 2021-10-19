@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Grpc.Core;
 using Microsoft.AspNetCore.Http;
 using OnoStore.WebApp.MVC.Services;
 using Polly.CircuitBreaker;
+using System;
 using System.Net;
 using System.Threading.Tasks;
-using Grpc.Core;
 
 namespace OnoStore.WebApp.MVC.Extensions
 {

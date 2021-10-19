@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.DataAnnotations;
 using Microsoft.Extensions.DependencyInjection;
+using NSE.WebAPI.Core.Extensions;
 using OnoStore.WebAPI.Core.User;
 using OnoStore.WebApp.MVC.Extensions;
 using OnoStore.WebApp.MVC.Services;
@@ -10,7 +11,6 @@ using Polly.Extensions.Http;
 using Polly.Retry;
 using System;
 using System.Net.Http;
-using NSE.WebAPI.Core.Extensions;
 
 namespace OnoStore.WebApp.MVC.Configuration
 {
